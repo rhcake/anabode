@@ -1,0 +1,18 @@
+Discussion file.
+
+Append to the file:
+    1. 2 (two) blank newlines
+    2. Your Skype username
+    3. 2 blank newlines
+    4. Your comment/response/question/idea, no more than 80 columns per line,
+       hard-wrapped
+    5. 1 (one) blank newline
+    5. 80 (eighty) columns of "="
+	
+===============================================================================
+
+Armymens
+
+Un tâdâ garâ uz priekðu.
+
+===============================================================================
