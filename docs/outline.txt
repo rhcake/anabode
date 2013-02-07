@@ -8,18 +8,6 @@ Append to the file:
        hard-wrapped
     5. 1 (one) blank newline
     5. 80 (eighty) columns of "="
-	
-===============================================================================
-
-Armymens
-
-Un tādā garā uz priekšu.
-
-===============================================================================
-
-Armymens
-
-ŗščĀĢņ test
 
 ===============================================================================
 
@@ -83,5 +71,42 @@ garumzīmēm. Ierosinu kā kulturāliem cilvēkiem diakritisko zīmju vietā lik
 -j utt.
 
 	Tjipa shita te kaut ka, ljoti lasami imo.
+
+===============================================================================
+
+Samuraigars
+
+	Kristapa ideja ir variācija par jau esošo tēmu, un man arī šķeit ir diezgan laba
+un arī konkrēta. Krietni labāka par oriģinālo IMO. Tādu pat varētu būt interesanti spēlēt, 
+jo arī katrs līmenis ir citāds un nav procedurāli ģenerēts. 
+
+	Runājot par to vai tu kontrolē vai nekontrolē čaru es domāju labāks variants būtu ka kontrolē:
+gan tāpēc ka bots var nesaprast kā spēlētājs bija domājis tikt augšā pa uzbūvēto struktūru gan arī
+tāpēc ka tad spēlētājam kādu pus minūti (atkarībā no līmeņa sarežģītības un čalīša ātruma) vnk
+jāskatās uz ekrānu.+ vēl tas ka arī varam paplašināt gameplay uz platformēšanas elementa.
+
+	Runājot par tematiku - to var izlemt vēl krietni vēlāk. Protams ja ir killer ideja 
+tad nāciet klajā, bet principā - virspirms idejas, tad gameplay prototips. Varbūt varam no sākuma
+pieņemt ka taisam kaut kādu multeņu galdnieka tēlu 
+http://images.clipartof.com/small/441035-Royalty-Free-RF-Clip-Art-Illustration-Of-A-Cartoon-Carpenter-Whistling-And-Carrying-A-Board.jpg
+http://toonclips.com/600/9429.jpg
+
+	Papildinot ideju: 
+1)var uztaisīt ka tavi neizmantotie materiāli tiek pārcelti no iepriekšējā līmeni uz nākamo 
+(tādejādi esi ieinteresēts tērēt pēc iespējas mazāk) 
+
+2)var uztaisīt ka materiāli (vai arī tikai papildus materiāli) atrodas kaut kādos fiksētos 
+punktos līmenī, līdz kuriem tev ir jātiek ar savu čalīti
+
+3)var paplašināt spēli uz platformēšnas rēķina - dot čalītim kaut kādas papildus spējas, 
+vai skaitīt viņam health lai viņš nedrīkst nokrist no pārāk liela augstuma...
+
+4)ideja ka līmeņa beigas ir checkpoints un visi līmeņi ir saistīti ir laba. var pat uztaisīt
+ tā ka tev nākamā struktūra ir daļēji jābalsta uz iepriekšējās (varbūt šitā nav laba ideja
+ ko jūs teiksiet)
+
+5)nav obligāti jābūvē uz augšu. var jau līmeņu ietvaros taisīt variācijas par tēmu, kur 
+jātiek pāri aizai vai jānolaižas kaut kādā caurumā nenositoties...
+
 
 ===============================================================================
