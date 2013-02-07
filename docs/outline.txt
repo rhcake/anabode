@@ -22,3 +22,33 @@ Armymens
 ŗščĀĢņ test
 
 ===============================================================================
+
+Kristaps
+
+Ideja.
+
+Speles sakuma speletajam var but piejams viens materials(Deelis) varbut ari ierobezots daudzums.
+
+Izmantojot so deli vinjam jauzbuve tornis/maaja/ struktura no zemes lidz kautkaadam punktam augstaak,
+klintij, kokam,... watever.
+
+Struktuura kas ir uzbuveta var ljodziities, apgazties, sabrukt ja nav pietiekosi stabila.
+
+Pec tam kad vinja ir gatava speletajs spiez kkadu pogu ka ir gatavs. Talak ir kkads speles 
+teels(chaliitis,dzivnieks,zivs,robots atkariigs no theme) kam pa ubuveto strukturu jatiek 
+augsa, speletajs visdrizak nekotrole vinju vai ari kontrole???.
+
+Personaazam parvietojoties struktura vel vairak suposies un merkis tads lai uzbuveetu pietiekosi
+stabiliu strukturu lai tas personaz tiek augsa uz merki un tornis nesabruktu.
+
+Speletajam tiekot uz jauniem leveliem var dot vairak materialus lidz max kadiem 5 lai neazpilda ekranu 
+un spele nepaliek parak sarezgita un neiteresanta. 
+
+Anyway kkas tads man ienaca sodien prata domajot par koncepta "Maja" speli.
+
+Konceptarts
+     ____
+   _|\_
+* / | | 
+
+===============================================================================
