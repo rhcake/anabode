@@ -52,3 +52,36 @@ Konceptarts
 * / | | 
 
 ===============================================================================
+
+Armymens
+
+	Ideja (par kuru man vismaz likās ka vienojāmies) ir sekojoša:
+Lauka centrā atrodas ēka. Gar kartes malām ir klintis (dažas kustīgas). Mērķis
+ir neļaut ēkai nogāzties viņu stiķējot pie klintīm ar dēļiem un virvēm.
+Katram attiecīgi ir savas īpašības. Spēlētājam būtu pieejami abi materiāli.
+Viņus novietot būtu iespējams attiecīgi atķeksējot sākuma un beigu punktus.Kā
+sākuma/beigu punkti var būt: pati māja, dēļi, klintis.
+	Spēles mērķi vēl nebijām pārrunājuši. Šajā gadījumā es teiktu, ka
+piemērotākais mērķis būtu izturēt noteiktu laiku ar pieaugošu sarežģītību un
+mazāku klinšu vai detaļu skaitu.
+
+	imgs mapē pievienots uzmetums.
+
+	Kreisajā stūri ir materiāli. Augšējā kreisajā/labajā stūrī ir lauki kuros
+spēlētājs var ievilkt detaļu, ja vēlas atcelt darbību. Violetais fons ir virvei
+kurai ir atlikts tikai sākuma punkts un kura tiek vilkta uz beigu punktu.
+
+	Uff... bet Kristapa ideja man patīk vairāk... daudz vairāk. Celt torni, uz
+torņa novietot savienotas kāpnes un kad tornis pabeigts skatīties kā "čalītis"
+cenšas sasniegt galotni. Sasniedzot torņa galotni līmenis beidzas un nākamais
+sākas no iepriekšējā galotnes (kurš tagad ir stabils - checkpoint). Un tā
+turpināt kamēr viņš neieiet orbītā. Es teiktu ka jāturpina attīstīt Kristapa
+ideju.
+
+	Neatceros pēdējo reizi, kad tik daudz esmu uzrakstījis latviešu valodā ar
+garumzīmēm. Ierosinu kā kulturāliem cilvēkiem diakritisko zīmju vietā likt -h
+-j utt.
+
+	Tjipa shita te kaut ka, ljoti lasami imo.
+
+===============================================================================
