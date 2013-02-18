@@ -40,6 +40,9 @@ public abstract class GameObject implements Disposable {
         }
     }
 
+    /**
+     * Method for setting up object, create attributes set values here etc.
+     */
     public abstract void create();
 
     public final Object get(String name) {

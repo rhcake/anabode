@@ -26,14 +26,24 @@ public class BaseTest extends Game {
 
     @Override
     public void create() {
+        // Creates and sets up framework base.
         base = new Base();
         base.initialize();
         base.toggleDebugRenderer();
         base.setGravity(0, -1f);
         base.setViewPort(10, 10);
+
+
+        // Creates objects
         TestObject testObject = new TestObject();
+        TestObject2 testObject2 = new TestObject2();
+
+        // add script to object.
         testObject.addScript(new TestScrpt());
+
+        //Add object to game
         base.addObject(testObject);
+        base.addObject(testObject2);
     }
 
     @Override
@@ -48,8 +58,29 @@ public class BaseTest extends Game {
         public void create() {
             addAttribute("position", new Vector2(1.f, 2));
             BodyDef bodyDef = new BodyDef();
-            bodyDef.position.set(0, 0);
+            bodyDef.position.set(0, 2);
             bodyDef.type = BodyDef.BodyType.DynamicBody;
+            Body body = getPhysicsWorld().createBody(bodyDef);
+
+            FixtureDef fixtureDef = new FixtureDef();
+            PolygonShape shape = new PolygonShape();
+            shape.setAsBox(0.1f, 0.1f);
+            fixtureDef.shape = shape;
+            body.createFixture(fixtureDef);
+            shape.dispose();
+
+            addAttribute("body", body);
+        }
+    }
+
+    private final class TestObject2 extends GameObject {
+
+        @Override
+        public void create() {
+            addAttribute("position", new Vector2(1.f, 2));
+            BodyDef bodyDef = new BodyDef();
+            bodyDef.position.set(0, 0);
+            bodyDef.type = BodyDef.BodyType.StaticBody;
             Body body = getPhysicsWorld().createBody(bodyDef);
 
             FixtureDef fixtureDef = new FixtureDef();
@@ -74,6 +105,13 @@ public class BaseTest extends Game {
         @Override
         public void onUpdate() {
             position.add(1, 1);
+        }
+
+
+        @Override
+        public void onCollision(GameObject from) {
+            Gdx.app.log("IIT COLLIDED!!!!", "!!!");
+            super.onCollision(from);    //To change body of overridden methods use File | Settings | File Templates.
         }
 
         @Override
