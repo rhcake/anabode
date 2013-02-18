@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Disposable;
  * @author Kristaps Kohs
  */
 public abstract class ActionScript implements Disposable {
-    private final Vector2 pointer = new Vector2();
     private GameObject parent;
     private boolean enabled = true;
     private long period = 0;
@@ -111,6 +110,6 @@ public abstract class ActionScript implements Disposable {
     protected final Vector2 getPointer() {
         Vector3 tmp = Vector3.tmp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         parent.getCamera().unproject(tmp);
-        return pointer.set(tmp.x, tmp.y);
+        return Vector2.tmp.set(tmp.x, tmp.y);
     }
 }

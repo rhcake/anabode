@@ -45,11 +45,11 @@ public abstract class GameObject implements Disposable {
      */
     public abstract void create();
 
-    public final Object get(String name) {
-        return attributes.get(name.toLowerCase());
+    public final Object get(final String name) {
+        return attributes.get(name);
     }
 
-    public final void addAttribute(String name, Object data) {
+    public final void addAttribute(final String name, final Object data) {
         if (data instanceof Actor) {
             ((Actor) data).addListener(clickAction);
             ui = true;
@@ -57,10 +57,10 @@ public abstract class GameObject implements Disposable {
         } else if (data instanceof Body) {
             ((Body) data).setUserData(this);
         }
-        attributes.put(name.toLowerCase(), data);
+        attributes.put(name, data);
     }
 
-    public final void addScript(ActionScript script) {
+    public final void addScript(final ActionScript script) {
         if (initialized) {
             script.initialize();
         }
@@ -68,7 +68,7 @@ public abstract class GameObject implements Disposable {
         scripts.add(script);
     }
 
-    public void removeScript(ActionScript script) {
+    public void removeScript(final ActionScript script) {
         scripts.remove(script);
         script.dispose();
     }
@@ -108,7 +108,7 @@ public abstract class GameObject implements Disposable {
         }
     }
 
-    public void onCollision(GameObject object) {
+    public void onCollision(final GameObject object) {
         for (ActionScript script : scripts) {
             script.onCollision(object);
         }
@@ -124,11 +124,11 @@ public abstract class GameObject implements Disposable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    protected final void setBase(Base base) {
+    protected final void setBase(final Base base) {
         this.base = base;
     }
 
