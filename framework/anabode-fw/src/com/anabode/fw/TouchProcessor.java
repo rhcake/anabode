@@ -39,7 +39,6 @@ public class TouchProcessor extends InputAdapter {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         if (selected != null) {
             selected.onTouchDragged();
-            selected = null;
             return true;
         }
         return false;

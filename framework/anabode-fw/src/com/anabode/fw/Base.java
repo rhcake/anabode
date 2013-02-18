@@ -72,7 +72,7 @@ public class Base {
      * Update method to update all objects.
      */
     public void update() {
-        physicsWorld.step(1.0f/60.0f,10,10);
+        physicsWorld.step(1.0f / 60.0f, 10, 10);
         for (GameObject gameObject : objects) {
             gameObject.update();
         }
@@ -84,8 +84,8 @@ public class Base {
     public void render() {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         camera.update();
-        if(debug) {
-            dDebugRenderer.render(physicsWorld,camera.combined);
+        if (debug) {
+            dDebugRenderer.render(physicsWorld, camera.combined);
         }
         for (Long layer : layerObjects.keySet()) {
             for (GameObject object : layerObjects.get(layer)) {
@@ -104,6 +104,7 @@ public class Base {
      */
     public void addObject(GameObject gameObject) {
         gameObject.setBase(this);
+        gameObject.create();
         gameObject.initialize();
         if (gameObject.getName() != null) {
             referencedObjects.put(gameObject.getName(), gameObject);
@@ -139,9 +140,6 @@ public class Base {
         return camera;
     }
 
-    public void setCamera(Camera camera) {
-        this.camera = camera;
-    }
 
     public void setGravity(float x, float y) {
         gravity.set(x, y);
@@ -149,7 +147,7 @@ public class Base {
     }
 
     public void setGravity(final Vector2 gravity) {
-        setGravity(gravity.x,gravity.y);
+        setGravity(gravity.x, gravity.y);
     }
 
     public Stage getUiStage() {
@@ -165,7 +163,7 @@ public class Base {
         camera.viewportWidth = viewPortWidth;
     }
 
-    public void toggleDebugRenderer(){
-       debug ^= true;
+    public void toggleDebugRenderer() {
+        debug ^= true;
     }
 }

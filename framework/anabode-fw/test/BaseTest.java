@@ -1,10 +1,8 @@
-package com.anabode.fw.test;
-
-
 import com.anabode.fw.ActionScript;
 import com.anabode.fw.Base;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -45,8 +43,9 @@ public class BaseTest extends Game {
     }
 
     private final class TestObject extends GameObject {
+
         @Override
-        public void initialize() {
+        public void create() {
             addAttribute("position", new Vector2(1.f, 2));
             BodyDef bodyDef = new BodyDef();
             bodyDef.position.set(0, 0);
@@ -61,7 +60,6 @@ public class BaseTest extends Game {
             shape.dispose();
 
             addAttribute("body", body);
-            super.initialize();    //To change body of overridden methods use File | Settings | File Templates.
         }
     }
 
@@ -76,6 +74,11 @@ public class BaseTest extends Game {
         @Override
         public void onUpdate() {
             position.add(1, 1);
+        }
+
+        @Override
+        public void onTouchDragged() {
+            Gdx.app.log("IITSS DRAGGINN!!!!", "!!!");
         }
     }
 }

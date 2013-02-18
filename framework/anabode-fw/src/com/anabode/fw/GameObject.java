@@ -22,29 +22,31 @@ public abstract class GameObject implements Disposable {
     private String name;
     private boolean ui = false;
     private boolean initialized = false;
-    private Map<String, Object> dataMap = new HashMap<String, Object>();
+    private Map<String, Object> attributes = new HashMap<String, Object>();
     private List<ActionScript> scripts = new LinkedList<ActionScript>();
     private ClickAction clickAction = new ClickAction();
     private long layer = 0;
 
-    public void initialize() {
+    public final void initialize() {
         initialized = true;
         for (ActionScript script : scripts) {
             script.initialize();
         }
 
-        for (Object attribute : dataMap.values()) {
+        for (Object attribute : attributes.values()) {
             if (attribute instanceof Body) {
                 ((Body) attribute).setUserData(this);
             }
         }
     }
 
-    public Object get(String name) {
-        return dataMap.get(name.toLowerCase());
+    public abstract void create();
+
+    public final Object get(String name) {
+        return attributes.get(name.toLowerCase());
     }
 
-    public void addAttribute(String name, Object data) {
+    public final void addAttribute(String name, Object data) {
         if (data instanceof Actor) {
             ((Actor) data).addListener(clickAction);
             ui = true;
@@ -52,10 +54,10 @@ public abstract class GameObject implements Disposable {
         } else if (data instanceof Body) {
             ((Body) data).setUserData(this);
         }
-        dataMap.put(name.toLowerCase(), data);
+        attributes.put(name.toLowerCase(), data);
     }
 
-    public void addScript(ActionScript script) {
+    public final void addScript(ActionScript script) {
         if (initialized) {
             script.initialize();
         }
