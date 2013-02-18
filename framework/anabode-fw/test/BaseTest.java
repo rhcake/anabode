@@ -2,7 +2,6 @@ import com.anabode.fw.ActionScript;
 import com.anabode.fw.Base;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -62,6 +61,7 @@ public class BaseTest extends Game {
             FixtureDef fixtureDef = new FixtureDef();
             PolygonShape shape = new PolygonShape();
             shape.setAsBox(0.1f, 0.1f);
+            fixtureDef.density = 0.2f;
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
             shape.dispose();
@@ -110,7 +110,6 @@ public class BaseTest extends Game {
 
         @Override
         public void onCollision(GameObject from) {
-            Gdx.app.log("IIT COLLIDED!!!!", "!!!");
             super.onCollision(from);    //To change body of overridden methods use File | Settings | File Templates.
         }
 
@@ -121,9 +120,8 @@ public class BaseTest extends Game {
 
         @Override
         public void onTouchDragged() {
-
-            Gdx.app.log("IITSS DRAGGINN!!!!", "!!!");
             body.setActive(false);
+            body.setLinearVelocity(0, 0);
             body.setTransform(getPointer(), 0);
         }
     }

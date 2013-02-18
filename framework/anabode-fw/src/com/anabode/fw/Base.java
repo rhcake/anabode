@@ -16,9 +16,12 @@ import java.util.*;
 /**
  * @author Kristaps Kohs
  */
+//TODO Creative name of this class required!!!
 public class Base {
 
     private static final float UPDATE_STEP = 1.0f / 60.0f;
+    private static final int VELOCITY_ITERATION_STEP = 10;
+    private static final int POSITION_ITERATION_STEP = 10;
     /**
      * Gravity vector.
      */
@@ -51,11 +54,8 @@ public class Base {
      * Stage container for UI.
      */
     private Stage uiStage;
-
     private Box2DDebugRenderer dDebugRenderer;
-
     private SpriteBatch batch;
-
     private boolean debug;
 
     /**
@@ -78,7 +78,7 @@ public class Base {
      * Update method to update all objects.
      */
     public void update() {
-        physicsWorld.step(UPDATE_STEP, 10, 10);
+        physicsWorld.step(UPDATE_STEP, VELOCITY_ITERATION_STEP, POSITION_ITERATION_STEP);
         for (GameObject gameObject : objects) {
             gameObject.update();
         }
@@ -153,7 +153,6 @@ public class Base {
         return camera;
     }
 
-
     public void setGravity(float x, float y) {
         gravity.set(x, y);
         physicsWorld.setGravity(gravity);
@@ -176,5 +175,7 @@ public class Base {
         camera.viewportWidth = viewPortWidth;
     }
 
-
+    public void setStageViewPort(float viewPortWidth, float viewPortHeight) {
+        uiStage.setViewport(viewPortWidth, viewPortHeight, true);
+    }
 }
