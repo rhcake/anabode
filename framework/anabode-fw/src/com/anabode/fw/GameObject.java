@@ -1,6 +1,7 @@
 package com.anabode.fw;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -18,13 +19,13 @@ import java.util.Map;
  */
 public abstract class GameObject implements Disposable {
 
+    private final Map<String, Object> attributes = new HashMap<String, Object>();
+    private final List<ActionScript> scripts = new LinkedList<ActionScript>();
+    private final ClickAction clickAction = new ClickAction();
     private Base base;
     private String name;
     private boolean ui = false;
     private boolean initialized = false;
-    private Map<String, Object> attributes = new HashMap<String, Object>();
-    private List<ActionScript> scripts = new LinkedList<ActionScript>();
-    private ClickAction clickAction = new ClickAction();
     private long layer = 0;
 
     public final void initialize() {
@@ -102,9 +103,9 @@ public abstract class GameObject implements Disposable {
         }
     }
 
-    public void render() {
+    public void render(SpriteBatch batch) {
         for (ActionScript script : scripts) {
-            script.onRender();
+            script.onRender(batch);
         }
     }
 

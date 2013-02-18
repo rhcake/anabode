@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -16,6 +17,8 @@ import java.util.*;
  * @author Kristaps Kohs
  */
 public class Base {
+
+    private static final float UPDATE_STEP = 1.0f / 60.0f;
     /**
      * Gravity vector.
      */
@@ -51,6 +54,8 @@ public class Base {
 
     private Box2DDebugRenderer dDebugRenderer;
 
+    private SpriteBatch batch;
+
     private boolean debug;
 
     /**
@@ -60,6 +65,7 @@ public class Base {
     public void initialize() {
         uiStage = new Stage();
         physicsWorld = new World(gravity, true);
+        batch = new SpriteBatch();
         camera = new OrthographicCamera();
         physicsWorld.setContactListener(new CollisionListener());
         Gdx.input.setInputProcessor(inputMultiplexer);
@@ -72,10 +78,11 @@ public class Base {
      * Update method to update all objects.
      */
     public void update() {
-        physicsWorld.step(1.0f / 60.0f, 10, 10);
+        physicsWorld.step(UPDATE_STEP, 10, 10);
         for (GameObject gameObject : objects) {
             gameObject.update();
         }
+        uiStage.act();
     }
 
     /**
@@ -84,16 +91,18 @@ public class Base {
     public void render() {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         camera.update();
+        batch.begin();
         if (debug) {
             dDebugRenderer.render(physicsWorld, camera.combined);
         }
         for (Long layer : layerObjects.keySet()) {
             for (GameObject object : layerObjects.get(layer)) {
                 if (!object.isUi()) {
-                    object.render();
+                    object.render(batch);
                 }
             }
         }
+        batch.end();
         uiStage.draw();
     }
 
@@ -136,6 +145,10 @@ public class Base {
         object.dispose();
     }
 
+    public void toggleDebugRenderer() {
+        debug ^= true;
+    }
+
     public Camera getCamera() {
         return camera;
     }
@@ -163,7 +176,5 @@ public class Base {
         camera.viewportWidth = viewPortWidth;
     }
 
-    public void toggleDebugRenderer() {
-        debug ^= true;
-    }
+
 }

@@ -12,11 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * Created with IntelliJ IDEA.
- * User: KristapsK
- * Date: 13.18.2
- * Time: 17:04
- * To change this template use File | Settings | File Templates.
+ * @author Kristaps Kohs
  */
 public class BaseTest extends Game {
     private Base base;
