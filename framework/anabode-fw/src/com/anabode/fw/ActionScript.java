@@ -1,16 +1,20 @@
 package com.anabode.fw;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
  * @author Kristaps Kohs
  */
 public abstract class ActionScript implements Disposable {
+    private final Vector2 pointer = new Vector2();
     private GameObject parent;
     private boolean enabled = true;
     private long period = 0;
     private long accumulatedDelta;
+
 
     public abstract void initialize();
 
@@ -102,5 +106,11 @@ public abstract class ActionScript implements Disposable {
 
     protected void setParent(GameObject parent) {
         this.parent = parent;
+    }
+
+    protected final Vector2 getPointer() {
+        Vector3 tmp = Vector3.tmp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        parent.getCamera().unproject(tmp);
+        return pointer.set(tmp.x, tmp.y);
     }
 }

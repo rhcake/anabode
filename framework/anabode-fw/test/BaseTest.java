@@ -4,6 +4,7 @@ import com.anabode.fw.GameObject;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -96,10 +97,13 @@ public class BaseTest extends Game {
 
     private final class TestScrpt extends ActionScript {
         private Vector2 position;
+        private Body body;
+        private Matrix4 matrix4 = new Matrix4();
 
         @Override
         public void initialize() {
             position = get("position");
+            body = get("body");
         }
 
         @Override
@@ -115,8 +119,16 @@ public class BaseTest extends Game {
         }
 
         @Override
+        public void onTouchUp() {
+            body.setActive(true);
+        }
+
+        @Override
         public void onTouchDragged() {
+
             Gdx.app.log("IITSS DRAGGINN!!!!", "!!!");
+            body.setActive(false);
+            body.setTransform(getPointer(), 0);
         }
     }
 }

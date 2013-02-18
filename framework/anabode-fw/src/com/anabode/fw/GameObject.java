@@ -70,6 +70,7 @@ public abstract class GameObject implements Disposable {
 
     public void removeScript(ActionScript script) {
         scripts.remove(script);
+        script.dispose();
     }
 
     public void update() {
