@@ -1,5 +1,6 @@
 package com.anabode.fw;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -32,6 +33,9 @@ public abstract class GameObject implements Disposable {
         initialized = true;
         for (ActionScript script : scripts) {
             script.initialize();
+            if(script instanceof InputProcessor) {
+                base.addInputProcessor((InputProcessor) script);
+            }
         }
 
         for (Object attribute : attributes.values()) {

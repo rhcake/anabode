@@ -2,6 +2,7 @@ package com.anabode.fw;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -132,6 +133,10 @@ public class Base {
         objects.add(gameObject);
     }
 
+    protected void addInputProcessor(InputProcessor processor) {
+        inputMultiplexer.addProcessor(processor);
+    }
+
     public GameObject getObject(String name) {
         return referencedObjects.get(name);
     }
@@ -198,4 +203,5 @@ public class Base {
     public void setSelectionSource(GameObject selectionSource) {
         this.selectionSource = selectionSource;
     }
+
 }

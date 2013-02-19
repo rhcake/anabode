@@ -56,7 +56,7 @@ public class BaseTest extends Game {
         public void create() {
             addAttribute("position", new Vector2(1.f, 2));
             BodyDef bodyDef = new BodyDef();
-            bodyDef.position.set(0, 2);
+            bodyDef.position.set(0.5f, 2);
             bodyDef.type = BodyDef.BodyType.DynamicBody;
             Body body = getPhysicsWorld().createBody(bodyDef);
 
