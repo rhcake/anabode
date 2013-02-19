@@ -2,6 +2,7 @@ import com.anabode.fw.ActionScript;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 
 /**
@@ -35,13 +36,14 @@ public class AttachmentScript extends ActionScript {
     public void onTouchUp() {
         body.setActive(true);
         GameObject source = getSelectionSource();
-        if (source != null) {
+        Joint joint = get("joint");
+        if (source != null && joint == null) {
             RevoluteJointDef jointDef = new RevoluteJointDef();
             jointDef.collideConnected = true;
             Body bodyA = (Body) source.get("body");
 
-            jointDef.initialize(bodyA, body, position);
-            createJoint(jointDef);
+            jointDef.initialize(bodyA, body, body.getPosition());
+            addAttribute("joint", createJoint(jointDef));
         }
     }
 

@@ -22,6 +22,7 @@ public class TouchProcessor extends InputAdapter implements QueryCallback {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         base.getCamera().unproject(touchPoint.set(screenX, screenY, 0));
         base.getPhysicsWorld().QueryAABB(this, touchPoint.x - 0.0001f, touchPoint.y - 0.0001f, touchPoint.x + 0.0001f, touchPoint.y + 0.0001f);
+        base.setSelectionSource(selected);
         return selected != null;
     }
 
@@ -32,13 +33,14 @@ public class TouchProcessor extends InputAdapter implements QueryCallback {
             selected.onTouchUp();
             base.getCamera().unproject(touchPoint.set(screenX, screenY, 0));
             base.getPhysicsWorld().QueryAABB(this, touchPoint.x - 0.0001f, touchPoint.y - 0.0001f, touchPoint.x + 0.0001f, touchPoint.y + 0.0001f);
-            if(!base.getSelectionSource().equals(selected))  {
-               base.setSelectionTarget(selected);
-               selected.onTouchUp();
+            if (!base.getSelectionSource().equals(selected)) {
+                base.setSelectionTarget(selected);
+                selected.onTouchUp();
             }
 
             base.setSelectionTarget(null);
             base.setSelectionTarget(null);
+            selected = null;
             return true;
         }
         return false;

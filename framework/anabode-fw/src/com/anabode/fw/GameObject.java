@@ -33,7 +33,7 @@ public abstract class GameObject implements Disposable {
         initialized = true;
         for (ActionScript script : scripts) {
             script.initialize();
-            if(script instanceof InputProcessor) {
+            if (script instanceof InputProcessor) {
                 base.addInputProcessor((InputProcessor) script);
             }
         }
@@ -165,9 +165,13 @@ public abstract class GameObject implements Disposable {
         return base.getObject(name);
     }
 
+    public Base getBase() {
+        return base;
+    }
+
     protected final GameObject getSelectionSource() {
         GameObject object = base.getSelectionSource();
-        if (!object.equals(this)) {
+        if (!this.equals(object)) {
             return object;
         } else {
             return null;

@@ -27,7 +27,7 @@ public class FloorObject extends GameObject {
         FixtureDef fixtureDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(0.1f, 1f);
+        shape.setAsBox(1.1f, 0.1f);
         fixtureDef.shape = shape;
 
         body.createFixture(fixtureDef);

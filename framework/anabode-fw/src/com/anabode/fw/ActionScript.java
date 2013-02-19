@@ -18,7 +18,6 @@ public abstract class ActionScript implements Disposable {
     private long period = 0;
     private long accumulatedDelta;
 
-
     public abstract void initialize();
 
     /**
@@ -75,12 +74,12 @@ public abstract class ActionScript implements Disposable {
         return enabled;
     }
 
-    public void dispose() {
-        parent = null;
-    }
-
     protected void setEnabled(boolean enabled) {
         this.enabled = true;
+    }
+
+    public void dispose() {
+        parent = null;
     }
 
     protected boolean isReadyToProcess() {
@@ -108,7 +107,7 @@ public abstract class ActionScript implements Disposable {
         return Vector2.tmp.set(tmp.x, tmp.y);
     }
 
-    protected final GameObject getSelectionSource(){
+    protected final GameObject getSelectionSource() {
         return parent.getSelectionSource();
     }
 
@@ -117,7 +116,15 @@ public abstract class ActionScript implements Disposable {
     }
 
     @SuppressWarnings("unchecked")
-    protected  <T> T get(String name) {
+    protected <T> T get(String name) {
         return (T) parent.get(name);
+    }
+
+    protected void addAttribute(String name, Object data) {
+        parent.addAttribute(name, data);
+    }
+
+    protected Base getBase() {
+        return parent.getBase();
     }
 }

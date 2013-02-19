@@ -1,15 +1,7 @@
-import com.anabode.fw.ActionScript;
 import com.anabode.fw.Base;
-import com.anabode.fw.GameObject;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 
 /**
  * @author Kristaps Kohs
@@ -32,16 +24,20 @@ public class BaseTest extends Game {
 
 
         // Creates objects
-        BoxObject boxObject = new BoxObject();
+        BoxObject boxObject = new BoxObject(new Vector2(0, 0));
         FloorObject floorObject = new FloorObject();
+        BackgroundObject backgroundObject = new BackgroundObject();
 
         // add script to object.
         boxObject.addScript(new AttachmentScript());
         floorObject.addScript(new AttachmentScript());
+        backgroundObject.addScript(new AddBoxScript());
+
 
         //Add object to game
         base.addObject(boxObject);
         base.addObject(floorObject);
+        base.addObject(backgroundObject);
     }
 
     @Override
