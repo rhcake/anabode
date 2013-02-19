@@ -54,9 +54,13 @@ public class Base {
      * Stage container for UI.
      */
     private Stage uiStage;
-    private Box2DDebugRenderer dDebugRenderer;
     private SpriteBatch batch;
+
+    private Box2DDebugRenderer dDebugRenderer;
     private boolean debug;
+
+    private GameObject selectionSource;
+    private GameObject selectionTarget;
 
     /**
      * Method for initializing framework.
@@ -177,5 +181,21 @@ public class Base {
 
     public void setStageViewPort(float viewPortWidth, float viewPortHeight) {
         uiStage.setViewport(viewPortWidth, viewPortHeight, true);
+    }
+
+    public GameObject getSelectionTarget() {
+        return selectionTarget;
+    }
+
+    public void setSelectionTarget(GameObject selectionTarget) {
+        this.selectionTarget = selectionTarget;
+    }
+
+    public GameObject getSelectionSource() {
+        return selectionSource;
+    }
+
+    public void setSelectionSource(GameObject selectionSource) {
+        this.selectionSource = selectionSource;
     }
 }

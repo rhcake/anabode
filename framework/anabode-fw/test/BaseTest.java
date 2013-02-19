@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 
 /**
  * @author Kristaps Kohs
@@ -36,6 +37,7 @@ public class BaseTest extends Game {
 
         // add script to object.
         testObject.addScript(new TestScrpt());
+        testObject2.addScript(new TestScrpt());
 
         //Add object to game
         base.addObject(testObject);
@@ -116,13 +118,19 @@ public class BaseTest extends Game {
         @Override
         public void onTouchUp() {
             body.setActive(true);
+            GameObject source = getSelectionSource();
+            if(source != null) {
+                RevoluteJointDef jointDef = new RevoluteJointDef();
+                Body bodyA = (Body) source.get("body");
+
+                jointDef.initialize(bodyA,body,body.getPosition());
+                createJoint(jointDef);
+            }
         }
 
         @Override
         public void onTouchDragged() {
-            body.setActive(false);
-            body.setLinearVelocity(0, 0);
-            body.setTransform(getPointer(), 0);
+
         }
     }
 }

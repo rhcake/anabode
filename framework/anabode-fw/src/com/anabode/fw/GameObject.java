@@ -157,6 +157,19 @@ public abstract class GameObject implements Disposable {
         return base.getPhysicsWorld();
     }
 
+    protected GameObject getObject(final String name) {
+        return base.getObject(name);
+    }
+
+    protected final GameObject getSelectionSource() {
+        GameObject object = base.getSelectionSource();
+        if (!object.equals(this)) {
+            return object;
+        } else {
+            return null;
+        }
+    }
+
     private final class ClickAction extends ClickListener {
         @Override
         public void clicked(InputEvent event, float x, float y) {

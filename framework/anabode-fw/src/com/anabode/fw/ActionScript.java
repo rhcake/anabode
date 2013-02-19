@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.JointDef;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -104,6 +105,14 @@ public abstract class ActionScript implements Disposable {
         Vector3 tmp = Vector3.tmp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         parent.getCamera().unproject(tmp);
         return Vector2.tmp.set(tmp.x, tmp.y);
+    }
+
+    protected final GameObject getSelectionSource(){
+        return parent.getSelectionSource();
+    }
+
+    protected final void createJoint(JointDef jointDef) {
+        parent.getPhysicsWorld().createJoint(jointDef);
     }
 
     @SuppressWarnings("unchecked")
