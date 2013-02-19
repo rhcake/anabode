@@ -32,105 +32,21 @@ public class BaseTest extends Game {
 
 
         // Creates objects
-        TestObject testObject = new TestObject();
-        TestObject2 testObject2 = new TestObject2();
+        BoxObject boxObject = new BoxObject();
+        FloorObject floorObject = new FloorObject();
 
         // add script to object.
-        testObject.addScript(new TestScrpt());
-        testObject2.addScript(new TestScrpt());
+        boxObject.addScript(new AttachmentScript());
+        floorObject.addScript(new AttachmentScript());
 
         //Add object to game
-        base.addObject(testObject);
-        base.addObject(testObject2);
+        base.addObject(boxObject);
+        base.addObject(floorObject);
     }
 
     @Override
     public void render() {
         base.update();
         base.render();
-    }
-
-    private final class TestObject extends GameObject {
-
-        @Override
-        public void create() {
-            addAttribute("position", new Vector2(1.f, 2));
-            BodyDef bodyDef = new BodyDef();
-            bodyDef.position.set(0.5f, 2);
-            bodyDef.type = BodyDef.BodyType.DynamicBody;
-            Body body = getPhysicsWorld().createBody(bodyDef);
-
-            FixtureDef fixtureDef = new FixtureDef();
-            PolygonShape shape = new PolygonShape();
-            shape.setAsBox(0.1f, 0.1f);
-            fixtureDef.density = 0.2f;
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-            shape.dispose();
-
-            addAttribute("body", body);
-        }
-    }
-
-    private final class TestObject2 extends GameObject {
-
-        @Override
-        public void create() {
-            addAttribute("position", new Vector2(1.f, 2));
-            BodyDef bodyDef = new BodyDef();
-            bodyDef.position.set(0, 0);
-            bodyDef.type = BodyDef.BodyType.StaticBody;
-            Body body = getPhysicsWorld().createBody(bodyDef);
-
-            FixtureDef fixtureDef = new FixtureDef();
-            PolygonShape shape = new PolygonShape();
-            shape.setAsBox(0.1f, 0.1f);
-            fixtureDef.shape = shape;
-            body.createFixture(fixtureDef);
-            shape.dispose();
-
-            addAttribute("body", body);
-        }
-    }
-
-    private final class TestScrpt extends ActionScript {
-        private Vector2 position;
-        private Body body;
-        private Matrix4 matrix4 = new Matrix4();
-
-        @Override
-        public void initialize() {
-            position = get("position");
-            body = get("body");
-        }
-
-        @Override
-        public void onUpdate() {
-            position.add(1, 1);
-        }
-
-
-        @Override
-        public void onCollision(GameObject from) {
-            super.onCollision(from);    //To change body of overridden methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void onTouchUp() {
-            body.setActive(true);
-            GameObject source = getSelectionSource();
-            if(source != null) {
-                RevoluteJointDef jointDef = new RevoluteJointDef();
-                Body bodyA = (Body) source.get("body");
-
-                jointDef.initialize(bodyA,body,body.getPosition());
-                createJoint(jointDef);
-            }
-        }
-
-        @Override
-        public void onTouchDragged() {
-
-        }
     }
 }
