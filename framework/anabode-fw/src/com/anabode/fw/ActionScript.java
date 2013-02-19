@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.JointDef;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -111,8 +112,8 @@ public abstract class ActionScript implements Disposable {
         return parent.getSelectionSource();
     }
 
-    protected final void createJoint(JointDef jointDef) {
-        parent.getPhysicsWorld().createJoint(jointDef);
+    protected final Joint createJoint(JointDef jointDef) {
+        return parent.getPhysicsWorld().createJoint(jointDef);
     }
 
     @SuppressWarnings("unchecked")
