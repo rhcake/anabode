@@ -39,6 +39,7 @@ public class TouchProcessor extends InputAdapter implements QueryCallback {
 
             base.setSelectionTarget(null);
             base.setSelectionTarget(null);
+            return true;
         }
         return false;
     }
