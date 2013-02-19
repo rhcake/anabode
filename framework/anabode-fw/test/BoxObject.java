@@ -14,9 +14,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  */
 public class BoxObject extends GameObject {
     private Vector2 position;
+    private float width;
+    private float angle;
 
-    public BoxObject(Vector2 position) {
+    public BoxObject(Vector2 position, float width, float angle) {
         this.position = position;
+        this.width = width;
+        this.angle = angle;
     }
 
     @Override
@@ -26,11 +30,12 @@ public class BoxObject extends GameObject {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.angle = angle;
         Body body = getPhysicsWorld().createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(0.1f, 0.1f);
+        shape.setAsBox(width, 0.1f);
 
         fixtureDef.density = 0.2f;
         fixtureDef.shape = shape;

@@ -124,6 +124,29 @@ public abstract class ActionScript implements Disposable {
         parent.addAttribute(name, data);
     }
 
+    /**
+     * Translates given vector to screen coordinates. Note returned vector is only usable to reading values DO NOT use it for computation.
+     *
+     * @param pos coordinates to translate.
+     * @return translated coordinates.
+     */
+    protected final Vector2 toScreenCords(Vector2 pos) {
+        return toScreenCords(pos.x, pos.y);
+    }
+
+    /**
+     * Translates given coordinates to screen coordinates. Note returned vector is only usable to reading values DO NOT use it for computation.
+     *
+     * @param x x coordinate to translate.
+     * @param y y coordinate to translate.
+     * @return translated coordinates.
+     */
+    protected final Vector2 toScreenCords(float x, float y) {
+        Vector3 tmp = Vector3.tmp.set(x, y, 0);
+        parent.getCamera().unproject(tmp);
+        return Vector2.tmp.set(tmp.x, tmp.y);
+    }
+
     protected Base getBase() {
         return parent.getBase();
     }

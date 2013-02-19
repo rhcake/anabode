@@ -24,7 +24,7 @@ public class BaseTest extends Game {
 
 
         // Creates objects
-        BoxObject boxObject = new BoxObject(new Vector2(0, 0));
+        BoxObject boxObject = new BoxObject(new Vector2(0, 0), 0.1f, 0);
         FloorObject floorObject = new FloorObject();
         BackgroundObject backgroundObject = new BackgroundObject();
 

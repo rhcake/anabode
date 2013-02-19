@@ -1,5 +1,7 @@
 import com.anabode.fw.ActionScript;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Date: 13.19.2
@@ -8,6 +10,8 @@ import com.badlogic.gdx.InputProcessor;
  * @author Kirstaps Kohs
  */
 public class AddBoxScript extends ActionScript implements InputProcessor {
+    private final Vector2 startPos = new Vector2();
+
     @Override
     public void initialize() {
     }
@@ -29,8 +33,19 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        startPos.set(toScreenCords(screenX, screenY));
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
         if (getSelectionSource() == null) {
-            BoxObject boxObject = new BoxObject(getPointer());
+            Vector2.tmp.set(toScreenCords(screenX, screenY)).sub(startPos);
+            float angle = Vector2.tmp.angle();
+            float width = startPos.dst(toScreenCords(screenX, screenY)) * .5f;
+            if (width < 0.01f) return false;
+            BoxObject boxObject = new BoxObject(getPointer(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
             boxObject.addScript(new AttachmentScript());
             getBase().addObject(boxObject);
             return true;
@@ -40,12 +55,8 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+
         return false;
     }
 

@@ -23,6 +23,7 @@ public class TouchProcessor extends InputAdapter implements QueryCallback {
         base.getCamera().unproject(touchPoint.set(screenX, screenY, 0));
         base.getPhysicsWorld().QueryAABB(this, touchPoint.x - 0.0001f, touchPoint.y - 0.0001f, touchPoint.x + 0.0001f, touchPoint.y + 0.0001f);
         base.setSelectionSource(selected);
+        base.setSelectionTarget(null);
         return selected != null;
     }
 
