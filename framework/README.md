@@ -1,6 +1,6 @@
 # Base.java
 Bāzes klase.
-Klase Base.java glabājas 
+Klasē Base.java glabājas 
 * Visi pievienotie objekti `com.anabode.fw.GameObject` 
 * Box2D fizikas bāzes klase `com.badlogic.gdx.physics.box2d.World`
 * Kamera `com.badlogic.gdx.graphics.OrthographicCamera` 
@@ -55,18 +55,18 @@ ActionScript klasei ir vairākas metodes kas tiek izsauktas balstoties uz notiku
 #### onUpdate()
 Šī metode tiek izsaukta katru kadru ja skripts ir enabled. Šeit būtu jāveic loģika kas ir neatkarīga no ārējā inputa.
 #### onTouchDown() 
-Šī metode tiks izsaukta ja objektam ir atribūts 'com.badlogic.gdx.physics.box2d.Body' un lietotājs ir piespiedis peli/pirkstu uz šo objektu.
+Šī metode tiks izsaukta ja objektam ir atribūts `com.badlogic.gdx.physics.box2d.Body` un lietotājs ir piespiedis peli/pirkstu uz šo objektu.
 
 #### onTouchUp()
-Šī metode tiek izsaukta ja objektam ir atribūts 'com.badlogic.gdx.physics.box2d.Body' un lietotājs ir pirms tam ir piespiedis peli/pirkstu uz šo objektu un šajā mirkli to atlaiž.
+Šī metode tiek izsaukta ja objektam ir atribūts `com.badlogic.gdx.physics.box2d.Body` un lietotājs ir pirms tam ir piespiedis peli/pirkstu uz šo objektu un šajā mirkli to atlaiž.
 
 ####  onTouchDragged()
-Šī metode tiek izsaukta ja objektam ir atribūts 'com.badlogic.gdx.physics.box2d.Body' un lietotājs ir pirms tam ir piespiedis peli/pirkstu uz šo objektu un neatlaižot velk pa ekrānu.
+Šī metode tiek izsaukta ja objektam ir atribūts `com.badlogic.gdx.physics.box2d.Body` un lietotājs ir pirms tam ir piespiedis peli/pirkstu uz šo objektu un neatlaižot velk pa ekrānu.
 
 #### onPeriodicUpdate() 
-Šī metode tiek izsaukta tikai tad ja skriptam ir uzstādīts mainīgais period un ir lielāks par 0 un laiks kopš pēdējās update reizes ir lielāks par uzstādīto periodu.
+Šī metode tiek izsaukta tikai tad ja skriptam ir uzstādīts mainīgais `period` un tas ir lielāks par 0 un laiks kopš pēdējās update reizes ir lielāks par uzstādīto periodu.
 
 #### onCollision(final GameObject from) 
-Šī metode tiek izsaukta ja objektam ir atribūts 'com.badlogic.gdx.physics.box2d.Body' un viņš saskaras ar citu objektu kuram ir šāds atribūts.
+Šī metode tiek izsaukta ja objektam ir atribūts `com.badlogic.gdx.physics.box2d.Body` un viņš saskaras ar citu objektu kuram ir šāds atribūts.
 #### onGuiTouch() 
 Šī metode tiek izsaukta ja objekts ir uzstādīts ka UI un tiek uzspiests uz šo objektu.
