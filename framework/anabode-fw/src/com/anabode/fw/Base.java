@@ -22,8 +22,8 @@ import java.util.*;
 public final class Base {
 
     private static final float UPDATE_STEP = 1.0f / 60.0f;
-    private static final int VELOCITY_ITERATION_STEP = 10;
-    private static final int POSITION_ITERATION_STEP = 10;
+    private static final int VELOCITY_ITERATION_STEP = 8;
+    private static final int POSITION_ITERATION_STEP = 3;
     /**
      * Gravity vector.
      */
