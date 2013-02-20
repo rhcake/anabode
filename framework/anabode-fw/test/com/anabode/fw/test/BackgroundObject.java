@@ -1,3 +1,5 @@
+package com.anabode.fw.test;
+
 import com.anabode.fw.GameObject;
 
 /**

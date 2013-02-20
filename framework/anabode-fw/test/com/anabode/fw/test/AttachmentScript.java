@@ -1,3 +1,5 @@
+package com.anabode.fw.test;
+
 import com.anabode.fw.ActionScript;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.math.Vector2;

@@ -1,3 +1,5 @@
+package com.anabode.fw.test;
+
 import com.anabode.fw.Base;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;

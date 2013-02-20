@@ -1,3 +1,5 @@
+package com.anabode.fw.test;
+
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -9,27 +11,36 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * Created with IntelliJ IDEA.
  * User: kristapsk
  * Date: 13.19.2
- * Time: 10:32
+ * Time: 10:30
  * To change this template use File | Settings | File Templates.
  */
-public class FloorObject extends GameObject {
+public class BoxObject extends GameObject {
+    private Vector2 position;
+    private float width;
+    private float angle;
+
+    public BoxObject(Vector2 position, float width, float angle) {
+        this.position = position;
+        this.width = width;
+        this.angle = angle;
+    }
+
     @Override
     public void create() {
-
-        addAttribute("position", new Vector2());
+        addAttribute("position", position);
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(0, 0);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-
+        bodyDef.position.set(position);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.angle = angle;
         Body body = getPhysicsWorld().createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
-
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(1.1f, 0.1f);
-        fixtureDef.shape = shape;
+        shape.setAsBox(width, 0.1f);
 
+        fixtureDef.density = 0.2f;
+        fixtureDef.shape = shape;
         body.createFixture(fixtureDef);
         shape.dispose();
 
