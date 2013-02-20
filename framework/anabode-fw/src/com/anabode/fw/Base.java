@@ -19,7 +19,7 @@ import java.util.*;
  * @author Kristaps Kohs
  */
 //TODO Creative name of this class required!!!
-public class Base {
+public final class Base {
 
     private static final float UPDATE_STEP = 1.0f / 60.0f;
     private static final int VELOCITY_ITERATION_STEP = 10;
