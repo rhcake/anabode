@@ -2,7 +2,6 @@ package com.anabode.fw.test;
 
 import com.anabode.fw.Base;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -42,14 +41,12 @@ public class BaseTest extends Game {
         base.addObject(boxObject);
         base.addObject(floorObject);
         base.addObject(backgroundObject);
-        Gdx.app.log("Asset progress", base.getAssetProgress() + " ");
     }
 
     @Override
     public void render() {
         base.update();
         base.render();
-        Gdx.app.log("Asset progress", base.getAssetProgress() + " ");
 
     }
 }

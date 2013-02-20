@@ -97,6 +97,9 @@ public final class Base {
      */
     public void update() {
         if (!assetLoadingFinished()) {
+            if (debug) {
+                Gdx.app.log("Loading assets, progress ", "" + getAssetProgress());
+            }
             assetManager.update();
         }
         physicsWorld.step(UPDATE_STEP, VELOCITY_ITERATION_STEP, POSITION_ITERATION_STEP);
