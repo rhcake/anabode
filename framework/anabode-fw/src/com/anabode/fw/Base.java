@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -72,6 +73,7 @@ public final class Base {
      * Flag indicating if debug is enabled.
      */
     private boolean debug;
+    private final FPSLogger fpsLogger = new FPSLogger();
     private GameObject selectionSource;
     private GameObject selectionTarget;
 
@@ -96,6 +98,9 @@ public final class Base {
      * Update method to update all objects.
      */
     public void update() {
+        if (debug) {
+            fpsLogger.log();
+        }
         if (!assetLoadingFinished()) {
             if (debug) {
                 Gdx.app.log("Loading assets, progress ", "" + getAssetProgress());
