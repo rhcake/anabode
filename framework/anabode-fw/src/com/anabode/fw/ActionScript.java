@@ -18,42 +18,42 @@ public abstract class ActionScript implements Disposable {
     private long period = 0;
     private long accumulatedDelta;
 
-    public abstract void initialize();
+    protected abstract void initialize();
 
     /**
      * Method called every frame when object is being rendered.
      */
-    public void onRender(SpriteBatch batch) {
+    protected void onRender(SpriteBatch batch) {
     }
 
     /**
      * Update method is called every frame if script is enabled.
      */
-    public void onUpdate() {
+    protected void onUpdate() {
     }
 
     /**
      * Called if objects collision box is touched.
      */
-    public void onTouchDown() {
+    protected void onTouchDown() {
     }
 
     /**
      * Called when object is released
      */
-    public void onTouchUp() {
+    protected void onTouchUp() {
     }
 
     /**
      * Called if object is selected and cursor is being dragged.
      */
-    public void onTouchDragged() {
+    protected void onTouchDragged() {
     }
 
     /**
      * Called if period is set > 0 and  passed time since last update is greater than period.
      */
-    public void onPeriodicUpdate() {
+    protected void onPeriodicUpdate() {
     }
 
     /**
@@ -61,13 +61,13 @@ public abstract class ActionScript implements Disposable {
      *
      * @param from Object that body collided with.
      */
-    public void onCollision(final GameObject from) {
+    protected void onCollision(final GameObject from) {
     }
 
     /**
      * Called if object is marked as UI and is being clicked on.
      */
-    public void onGuiTouch() {
+    protected void onGuiTouch() {
     }
 
     public boolean isEnabled() {
