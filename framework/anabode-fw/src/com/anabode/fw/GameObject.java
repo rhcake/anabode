@@ -169,8 +169,28 @@ public abstract class GameObject implements Disposable {
         return base.getObject(name);
     }
 
-    public Base getBase() {
+    protected Base getBase() {
         return base;
+    }
+
+    protected final <T> void loadAsset(final String name, final Class<T> type) {
+        base.loadAsset(name, type);
+    }
+
+    protected final <T> T getAsset(final String name, final Class<T> type) {
+        return base.getAsset(name, type);
+    }
+
+    protected final <T> T getAsset(final String name) {
+        return base.getAsset(name);
+    }
+
+    protected final boolean assetLoadingFinished() {
+        return base.assetLoadingFinished();
+    }
+
+    protected final float getAssetProgress() {
+        return base.getAssetProgress();
     }
 
     protected final GameObject getSelectionSource() {
