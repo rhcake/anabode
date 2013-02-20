@@ -78,6 +78,10 @@ public abstract class GameObject implements Disposable {
         script.dispose();
     }
 
+    public void removeAttribute(String name) {
+        attributes.remove(name);
+    }
+
     public void update() {
         for (ActionScript script : scripts) {
             if (script.isEnabled()) {
