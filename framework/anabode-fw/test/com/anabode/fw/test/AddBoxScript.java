@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class AddBoxScript extends ActionScript implements InputProcessor {
     private final Vector2 startPos = new Vector2();
+    private final Vector2 tempVector = new Vector2();
 
     @Override
     public void initialize() {
@@ -43,8 +44,8 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
         if (getSelectionSource() == null) {
-            Vector2.tmp.set(toScreenCords(screenX, screenY)).sub(startPos);
-            float angle = Vector2.tmp.angle();
+            tempVector.set(toScreenCords(screenX, screenY)).sub(startPos);
+            float angle = tempVector.angle();
             float width = startPos.dst(toScreenCords(screenX, screenY)) * .5f;
             if (width < 0.01f) return false;
             BoxObject boxObject = new BoxObject(getPointer(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
