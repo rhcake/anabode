@@ -3,7 +3,9 @@ package com.anabode.fw;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,11 +20,11 @@ import java.util.*;
  * @author Kristaps Kohs
  */
 //TODO Creative name of this class required!!!
-public class Base {
+public final class Base {
 
     private static final float UPDATE_STEP = 1.0f / 60.0f;
-    private static final int VELOCITY_ITERATION_STEP = 10;
-    private static final int POSITION_ITERATION_STEP = 10;
+    private static final int VELOCITY_ITERATION_STEP = 8;
+    private static final int POSITION_ITERATION_STEP = 3;
     /**
      * Gravity vector.
      */
@@ -55,11 +57,23 @@ public class Base {
      * Stage container for UI.
      */
     private Stage uiStage;
+    /**
+     * Sprite batch for rendering textures.
+     */
     private SpriteBatch batch;
-
+    /**
+     * Asset manager
+     */
+    private AssetManager assetManager;
+    /**
+     * Debug renderer.
+     */
     private Box2DDebugRenderer dDebugRenderer;
+    /**
+     * Flag indicating if debug is enabled.
+     */
     private boolean debug;
-
+    private final FPSLogger fpsLogger = new FPSLogger();
     private GameObject selectionSource;
     private GameObject selectionTarget;
 
@@ -77,12 +91,22 @@ public class Base {
         inputMultiplexer.addProcessor(uiStage);
         inputMultiplexer.addProcessor(new TouchProcessor(this));
         dDebugRenderer = new Box2DDebugRenderer();
+        assetManager = new AssetManager();
     }
 
     /**
      * Update method to update all objects.
      */
     public void update() {
+        if (debug) {
+            fpsLogger.log();
+        }
+        if (!assetLoadingFinished()) {
+            if (debug) {
+                Gdx.app.log("Loading assets, progress ", "" + getAssetProgress());
+            }
+            assetManager.update();
+        }
         physicsWorld.step(UPDATE_STEP, VELOCITY_ITERATION_STEP, POSITION_ITERATION_STEP);
         for (GameObject gameObject : objects) {
             gameObject.update();
@@ -160,6 +184,30 @@ public class Base {
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public final AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public final <T> void loadAsset(final String name, final Class<T> type) {
+        assetManager.load(name, type);
+    }
+
+    public final <T> T getAsset(final String name, final Class<T> type) {
+        return assetManager.get(name, type);
+    }
+
+    public final <T> T getAsset(final String name) {
+        return assetManager.get(name);
+    }
+
+    public final boolean assetLoadingFinished() {
+        return assetManager.getProgress() == 1;
+    }
+
+    public final float getAssetProgress() {
+        return assetManager.getProgress();
     }
 
     public void setGravity(float x, float y) {

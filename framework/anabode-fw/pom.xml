@@ -16,6 +16,11 @@
         <testSourceDirectory>
             test/
         </testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>test-resources/</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -34,9 +39,9 @@
             <url>http://libgdx.badlogicgames.com/nightlies/maven/</url>
         </repository>
     </repositories>
-     <properties>
-         <lib.gdx.version>0.9.9-SNAPSHOT</lib.gdx.version>
-     </properties>
+    <properties>
+        <lib.gdx.version>0.9.9-SNAPSHOT</lib.gdx.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -47,21 +52,21 @@
         </dependency>
 
         <dependency>
-              <groupId>com.badlogic.gdx</groupId>
-              <artifactId>gdx</artifactId>
-              <version>${lib.gdx.version}</version>
-          </dependency>
+            <groupId>com.badlogic.gdx</groupId>
+            <artifactId>gdx</artifactId>
+            <version>${lib.gdx.version}</version>
+        </dependency>
 
         <dependency>
-              <groupId>com.badlogic.gdx</groupId>
-              <artifactId>gdx-backend-lwjgl</artifactId>
-              <version>${lib.gdx.version}</version>
-          </dependency>
+            <groupId>com.badlogic.gdx</groupId>
+            <artifactId>gdx-backend-lwjgl</artifactId>
+            <version>${lib.gdx.version}</version>
+        </dependency>
         <dependency>
-              <groupId>com.badlogic.gdx</groupId>
-              <artifactId>gdx-platform</artifactId>
-              <version>${lib.gdx.version}</version>
+            <groupId>com.badlogic.gdx</groupId>
+            <artifactId>gdx-platform</artifactId>
+            <version>${lib.gdx.version}</version>
             <type>pom</type>
-          </dependency>
+        </dependency>
     </dependencies>
 </project>

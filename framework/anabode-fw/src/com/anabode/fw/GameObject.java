@@ -29,7 +29,7 @@ public abstract class GameObject implements Disposable {
     private boolean initialized = false;
     private long layer = 0;
 
-    public final void initialize() {
+    protected final void initialize() {
         initialized = true;
         for (ActionScript script : scripts) {
             script.initialize();
@@ -82,7 +82,7 @@ public abstract class GameObject implements Disposable {
         attributes.remove(name);
     }
 
-    public void update() {
+    protected void update() {
         for (ActionScript script : scripts) {
             if (script.isEnabled()) {
                 script.onUpdate();
@@ -93,31 +93,31 @@ public abstract class GameObject implements Disposable {
         }
     }
 
-    public void onTouchDown() {
+    protected void onTouchDown() {
         for (ActionScript script : scripts) {
             script.onTouchDown();
         }
     }
 
-    public void onTouchUp() {
+    protected void onTouchUp() {
         for (ActionScript script : scripts) {
             script.onTouchUp();
         }
     }
 
-    public void onTouchDragged() {
+    protected void onTouchDragged() {
         for (ActionScript script : scripts) {
             script.onTouchDragged();
         }
     }
 
-    public void render(SpriteBatch batch) {
+    protected void render(SpriteBatch batch) {
         for (ActionScript script : scripts) {
             script.onRender(batch);
         }
     }
 
-    public void onCollision(final GameObject object) {
+    protected void onCollision(final GameObject object) {
         for (ActionScript script : scripts) {
             script.onCollision(object);
         }
@@ -157,11 +157,11 @@ public abstract class GameObject implements Disposable {
         this.layer = layer;
     }
 
-    public Camera getCamera() {
+    protected Camera getCamera() {
         return base.getCamera();
     }
 
-    public World getPhysicsWorld() {
+    protected World getPhysicsWorld() {
         return base.getPhysicsWorld();
     }
 
@@ -169,8 +169,28 @@ public abstract class GameObject implements Disposable {
         return base.getObject(name);
     }
 
-    public Base getBase() {
+    protected Base getBase() {
         return base;
+    }
+
+    protected final <T> void loadAsset(final String name, final Class<T> type) {
+        base.loadAsset(name, type);
+    }
+
+    protected final <T> T getAsset(final String name, final Class<T> type) {
+        return base.getAsset(name, type);
+    }
+
+    protected final <T> T getAsset(final String name) {
+        return base.getAsset(name);
+    }
+
+    protected final boolean assetLoadingFinished() {
+        return base.assetLoadingFinished();
+    }
+
+    protected final float getAssetProgress() {
+        return base.getAssetProgress();
     }
 
     protected final GameObject getSelectionSource() {

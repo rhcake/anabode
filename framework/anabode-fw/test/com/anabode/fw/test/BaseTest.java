@@ -3,6 +3,7 @@ package com.anabode.fw.test;
 import com.anabode.fw.Base;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -35,7 +36,7 @@ public class BaseTest extends Game {
         floorObject.addScript(new AttachmentScript());
         backgroundObject.addScript(new AddBoxScript());
 
-
+        base.loadAsset("chain.png", Texture.class);
         //Add object to game
         base.addObject(boxObject);
         base.addObject(floorObject);
@@ -46,5 +47,6 @@ public class BaseTest extends Game {
     public void render() {
         base.update();
         base.render();
+
     }
 }
