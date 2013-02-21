@@ -95,6 +95,7 @@ public final class Base {
         dDebugRenderer = new Box2DDebugRenderer();
         assetManager = new AssetManager();
         rayHandler = new RayHandler(physicsWorld);
+        rayHandler.setAmbientLight(.05f);
     }
 
     /**

@@ -28,18 +28,25 @@ public class BaseTest extends Game {
 
         // Creates objects
         BoxObject boxObject = new BoxObject(new Vector2(0, 0), 0.1f, 0);
-        FloorObject floorObject = new FloorObject();
+        FloorObject floorObject = new FloorObject(new Vector2(0, -4.5f), 4.5f, 0.1f);
+        FloorObject floorObject2 = new FloorObject(new Vector2(4.6f, -1.6f), 0.1f, 3f);
+        FloorObject floorObject3 = new FloorObject(new Vector2(-4.6f, -1.6f), 0.1f, 3f);
         BackgroundObject backgroundObject = new BackgroundObject();
 
         // add script to object.
         boxObject.addScript(new AttachmentScript());
         floorObject.addScript(new AttachmentScript());
+        floorObject3.addScript(new AttachmentScript());
+        floorObject2.addScript(new AttachmentScript());
+        boxObject.addScript(new LightingScript());
         backgroundObject.addScript(new AddBoxScript());
 
         base.loadAsset("chain.png", Texture.class);
         //Add object to game
         base.addObject(boxObject);
         base.addObject(floorObject);
+        base.addObject(floorObject2);
+        base.addObject(floorObject3);
         base.addObject(backgroundObject);
     }
 

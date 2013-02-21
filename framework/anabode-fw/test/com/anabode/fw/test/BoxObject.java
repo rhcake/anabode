@@ -49,8 +49,8 @@ public class BoxObject extends GameObject {
         addAttribute("body", body);
 
         //PointLight light = new PointLight(getRayHandler(), 12, new Color(1,1,1,1), 1, 0, 0);
-        ConeLight coneLight = new ConeLight(getRayHandler(), 11, new Color(1, 0, 0, 1), 10, position.x, position.y, angle, angle);
+        ConeLight coneLight = new ConeLight(getRayHandler(), 11, new Color(1, 0, 0, 1), 10, position.x, position.y, body.getAngle(), 60);
         //  addAttribute("light", light);
-        addAttribute("coneLight", coneLight);
+        addAttribute("light", coneLight);
     }
 }

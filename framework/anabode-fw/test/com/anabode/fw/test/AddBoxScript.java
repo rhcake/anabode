@@ -50,6 +50,7 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
             if (width < 0.01f) return false;
             BoxObject boxObject = new BoxObject(getPointer(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
             boxObject.addScript(new AttachmentScript());
+            boxObject.addScript(new LightingScript());
             getBase().addObject(boxObject);
             return true;
         } else {

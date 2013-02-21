@@ -1,8 +1,6 @@
 package com.anabode.fw.test;
 
-import box2dLight.DirectionalLight;
 import com.anabode.fw.GameObject;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -17,13 +15,26 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * To change this template use File | Settings | File Templates.
  */
 public class FloorObject extends GameObject {
+    private Vector2 position;
+    private float width;
+    private float height;
+
+    public FloorObject(Vector2 position, float width, float height) {
+        this.position = position;
+        this.width = width;
+        this.height = height;
+    }
+
     @Override
     public void create() {
 
-        addAttribute("position", new Vector2());
+        addAttribute("position", position);
+
+        addAttribute("width", width);
+        addAttribute("height", height);
 
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(0, 0);
+        bodyDef.position.set(position);
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
         Body body = getPhysicsWorld().createBody(bodyDef);
@@ -31,15 +42,14 @@ public class FloorObject extends GameObject {
         FixtureDef fixtureDef = new FixtureDef();
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(1.1f, 0.1f);
+        shape.setAsBox(width, height);
         fixtureDef.shape = shape;
 
         body.createFixture(fixtureDef);
         shape.dispose();
 
         addAttribute("body", body);
-        DirectionalLight coneLight = new DirectionalLight(getRayHandler(), 100, new Color(1, 1, 1, 1), 90);
         //  addAttribute("light", light);
-        addAttribute("coneLight", coneLight);
+        //    }
     }
 }
