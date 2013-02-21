@@ -1,5 +1,6 @@
 package com.anabode.fw;
 
+import box2dLight.RayHandler;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -191,6 +192,10 @@ public abstract class GameObject implements Disposable {
 
     protected final float getAssetProgress() {
         return base.getAssetProgress();
+    }
+
+    protected final RayHandler getRayHandler() {
+        return base.getRayHandler();
     }
 
     protected final GameObject getSelectionSource() {

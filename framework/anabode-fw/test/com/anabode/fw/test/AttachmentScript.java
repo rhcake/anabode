@@ -1,5 +1,6 @@
 package com.anabode.fw.test;
 
+import box2dLight.Light;
 import com.anabode.fw.ActionScript;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.math.Vector2;
@@ -17,16 +18,21 @@ import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 public class AttachmentScript extends ActionScript {
     private Vector2 position;
     private Body body;
+    private Light coneLight;
 
     @Override
     public void initialize() {
         position = get("position");
         body = get("body");
+        coneLight = get("coneLight");
     }
 
     @Override
     public void onUpdate() {
         position.set(body.getPosition());
+        coneLight.setPosition(position);
+        coneLight.setDirection(position.angle());
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.anabode.fw;
 
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -160,5 +161,9 @@ public abstract class ActionScript implements Disposable {
 
     protected final <T> T getAsset(final String name) {
         return parent.getAsset(name);
+    }
+
+    protected final RayHandler getRayHandler() {
+        return parent.getRayHandler();
     }
 }

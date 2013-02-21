@@ -1,5 +1,6 @@
 package com.anabode.fw;
 
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
@@ -76,6 +77,7 @@ public final class Base {
     private final FPSLogger fpsLogger = new FPSLogger();
     private GameObject selectionSource;
     private GameObject selectionTarget;
+    private RayHandler rayHandler;
 
     /**
      * Method for initializing framework.
@@ -92,6 +94,7 @@ public final class Base {
         inputMultiplexer.addProcessor(new TouchProcessor(this));
         dDebugRenderer = new Box2DDebugRenderer();
         assetManager = new AssetManager();
+        rayHandler = new RayHandler(physicsWorld);
     }
 
     /**
@@ -101,6 +104,7 @@ public final class Base {
         if (debug) {
             fpsLogger.log();
         }
+        rayHandler.setCombinedMatrix(camera.combined);
         if (!assetLoadingFinished()) {
             if (debug) {
                 Gdx.app.log("Loading assets, progress ", "" + getAssetProgress());
@@ -131,6 +135,7 @@ public final class Base {
                 }
             }
         }
+        rayHandler.updateAndRender();
         batch.end();
         uiStage.draw();
     }
@@ -252,4 +257,7 @@ public final class Base {
         this.selectionSource = selectionSource;
     }
 
+    public RayHandler getRayHandler() {
+        return rayHandler;
+    }
 }

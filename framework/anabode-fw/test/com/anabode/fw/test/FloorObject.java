@@ -1,6 +1,8 @@
 package com.anabode.fw.test;
 
+import box2dLight.DirectionalLight;
 import com.anabode.fw.GameObject;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -36,5 +38,8 @@ public class FloorObject extends GameObject {
         shape.dispose();
 
         addAttribute("body", body);
+        DirectionalLight coneLight = new DirectionalLight(getRayHandler(), 100, new Color(1, 1, 1, 1), 90);
+        //  addAttribute("light", light);
+        addAttribute("coneLight", coneLight);
     }
 }
