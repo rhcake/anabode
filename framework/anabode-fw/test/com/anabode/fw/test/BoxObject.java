@@ -1,6 +1,6 @@
 package com.anabode.fw.test;
 
-import box2dLight.ConeLight;
+import box2dLight.PointLight;
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -49,7 +49,8 @@ public class BoxObject extends GameObject {
         addAttribute("body", body);
 
         //PointLight light = new PointLight(getRayHandler(), 12, new Color(1,1,1,1), 1, 0, 0);
-        ConeLight coneLight = new ConeLight(getRayHandler(), 11, new Color(1, 0, 0, 1), 10, position.x, position.y, body.getAngle(), 60);
+        PointLight coneLight = new PointLight(getRayHandler(), 11, new Color(1, 0, 0, 1), 0.8f, position.x, position.y);
+
         //  addAttribute("light", light);
         addAttribute("light", coneLight);
     }

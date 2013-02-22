@@ -54,6 +54,10 @@ public class BaseTest extends Game {
     public void render() {
         base.update();
         base.render();
+    }
 
+    @Override
+    public void dispose() {
+        base.dispose();
     }
 }

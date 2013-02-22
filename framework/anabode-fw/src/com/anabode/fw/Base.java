@@ -5,15 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Disposable;
 
 import java.util.*;
 
@@ -21,7 +19,7 @@ import java.util.*;
  * @author Kristaps Kohs
  */
 //TODO Creative name of this class required!!!
-public final class Base {
+public final class Base implements Disposable {
 
     private static final float UPDATE_STEP = 1.0f / 60.0f;
     private static final int VELOCITY_ITERATION_STEP = 8;
@@ -34,6 +32,14 @@ public final class Base {
      * Input multiplexer for managing input processors.
      */
     private final InputMultiplexer inputMultiplexer = new InputMultiplexer();
+    /**
+     * FPS logger for debugging FPS.
+     */
+    private final FPSLogger fpsLogger = new FPSLogger();
+    /**
+     * Flag indicating if Base hase been initialized.
+     */
+    protected boolean initialized;
     /**
      * Map containing list of objects sorted by rendering layers.
      */
@@ -74,9 +80,12 @@ public final class Base {
      * Flag indicating if debug is enabled.
      */
     private boolean debug;
-    private final FPSLogger fpsLogger = new FPSLogger();
+    // TODO Figure out what to do with these two!?!?
     private GameObject selectionSource;
     private GameObject selectionTarget;
+    /**
+     * Handler for processing and rendering lights.
+     */
     private RayHandler rayHandler;
 
     /**
@@ -84,6 +93,9 @@ public final class Base {
      * Initializes physics world, UI stage and input multiplexer.
      */
     public void initialize() {
+        if (initialized) {
+            throw new IllegalStateException("Base already initialized");
+        }
         uiStage = new Stage();
         physicsWorld = new World(gravity, true);
         batch = new SpriteBatch();
@@ -95,13 +107,16 @@ public final class Base {
         dDebugRenderer = new Box2DDebugRenderer();
         assetManager = new AssetManager();
         rayHandler = new RayHandler(physicsWorld);
-        rayHandler.setAmbientLight(.05f);
+        initialized = true;
     }
 
     /**
      * Update method to update all objects.
      */
     public void update() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         if (debug) {
             fpsLogger.log();
         }
@@ -117,12 +132,16 @@ public final class Base {
             gameObject.update();
         }
         uiStage.act();
+        rayHandler.update();
     }
 
     /**
      * Render method to render objects.
      */
     public void render() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         camera.update();
         batch.begin();
@@ -136,9 +155,9 @@ public final class Base {
                 }
             }
         }
-        rayHandler.updateAndRender();
         batch.end();
         uiStage.draw();
+        rayHandler.render();
     }
 
     /**
@@ -147,6 +166,9 @@ public final class Base {
      * @param gameObject object to add.
      */
     public void addObject(GameObject gameObject) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         gameObject.setBase(this);
         gameObject.create();
         gameObject.initialize();
@@ -164,14 +186,23 @@ public final class Base {
     }
 
     protected void addInputProcessor(InputProcessor processor) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         inputMultiplexer.addProcessor(processor);
     }
 
     public GameObject getObject(String name) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return referencedObjects.get(name);
     }
 
     public void destroyObject(GameObject object) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         if (object.getName() != null) {
             referencedObjects.remove(object.getName());
         }
@@ -185,80 +216,195 @@ public final class Base {
     }
 
     public void toggleDebugRenderer() {
-        debug ^= true;
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        debug = !debug;
     }
 
     public Camera getCamera() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return camera;
     }
 
     public final AssetManager getAssetManager() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return assetManager;
     }
 
     public final <T> void loadAsset(final String name, final Class<T> type) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         assetManager.load(name, type);
     }
 
     public final <T> T getAsset(final String name, final Class<T> type) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return assetManager.get(name, type);
     }
 
     public final <T> T getAsset(final String name) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return assetManager.get(name);
     }
 
     public final boolean assetLoadingFinished() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return assetManager.getProgress() == 1;
     }
 
     public final float getAssetProgress() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return assetManager.getProgress();
     }
 
     public void setGravity(float x, float y) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         gravity.set(x, y);
         physicsWorld.setGravity(gravity);
     }
 
     public void setGravity(final Vector2 gravity) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         setGravity(gravity.x, gravity.y);
     }
 
     public Stage getUiStage() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return uiStage;
     }
 
     public World getPhysicsWorld() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return physicsWorld;
     }
 
     public void setViewPort(float viewPortWidth, float viewPortHeight) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         camera.viewportHeight = viewPortHeight;
         camera.viewportWidth = viewPortWidth;
     }
 
     public void setStageViewPort(float viewPortWidth, float viewPortHeight) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         uiStage.setViewport(viewPortWidth, viewPortHeight, true);
     }
 
     public GameObject getSelectionTarget() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return selectionTarget;
     }
 
     public void setSelectionTarget(GameObject selectionTarget) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         this.selectionTarget = selectionTarget;
     }
 
     public GameObject getSelectionSource() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return selectionSource;
     }
 
     public void setSelectionSource(GameObject selectionSource) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         this.selectionSource = selectionSource;
     }
 
     public RayHandler getRayHandler() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
         return rayHandler;
+    }
+
+    public void setAmbientLightColor(Color color) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        rayHandler.setAmbientLight(color);
+    }
+
+    public void setAmbientLight(float intensity) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        rayHandler.setAmbientLight(intensity);
+    }
+
+    public void setShadows(boolean shadows) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        rayHandler.setShadows(shadows);
+    }
+
+    public void setCulling(boolean culling) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        rayHandler.setCulling(culling);
+    }
+
+    public void setBlur(boolean blur) {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        rayHandler.setBlur(blur);
+    }
+
+    @Override
+    public void dispose() {
+        if (!initialized) {
+            throw new IllegalStateException("Base not initialized!");
+        }
+        for (GameObject object : objects) {
+            object.dispose();
+        }
+
+        referencedObjects.clear();
+        objects.clear();
+        layerObjects.clear();
+
+        rayHandler.dispose();
+        uiStage.dispose();
+        assetManager.dispose();
+        dDebugRenderer.dispose();
+        batch.dispose();
+        physicsWorld.dispose();
+        initialized = false;
+
     }
 }
