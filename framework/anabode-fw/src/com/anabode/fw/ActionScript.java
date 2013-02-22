@@ -151,6 +151,12 @@ public abstract class ActionScript implements Disposable {
         return vector2.set(vector3.x, vector3.y);
     }
 
+    protected final Vector2 toWindowCords(float x, float y) {
+        vector3.set(x, y, 0);
+        parent.getCamera().project(vector3);
+        return vector2.set(vector3.x, vector3.y);
+    }
+
     protected Base getBase() {
         return parent.getBase();
     }

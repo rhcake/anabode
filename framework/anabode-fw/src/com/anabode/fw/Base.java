@@ -144,10 +144,10 @@ public final class Base implements Disposable {
         }
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         camera.update();
-        batch.begin();
         if (debug) {
             dDebugRenderer.render(physicsWorld, camera.combined);
         }
+        batch.begin();
         for (Long layer : layerObjects.keySet()) {
             for (GameObject object : layerObjects.get(layer)) {
                 if (!object.isUi()) {

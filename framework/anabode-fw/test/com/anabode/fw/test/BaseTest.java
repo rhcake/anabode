@@ -39,9 +39,11 @@ public class BaseTest extends Game {
         floorObject3.addScript(new AttachmentScript());
         floorObject2.addScript(new AttachmentScript());
         boxObject.addScript(new LightingScript());
+        boxObject.addScript(new RenderScript());
         backgroundObject.addScript(new AddBoxScript());
 
         base.loadAsset("chain.png", Texture.class);
+        base.getAssetManager().finishLoading();
         //Add object to game
         base.addObject(boxObject);
         base.addObject(floorObject);

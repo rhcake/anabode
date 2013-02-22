@@ -48,9 +48,10 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
             float angle = tempVector.angle();
             float width = startPos.dst(toScreenCords(screenX, screenY)) * .5f;
             if (width < 0.01f) return false;
-            BoxObject boxObject = new BoxObject(getPointer(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
+            BoxObject boxObject = new BoxObject(startPos.cpy(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
             boxObject.addScript(new AttachmentScript());
             boxObject.addScript(new LightingScript());
+            boxObject.addScript(new RenderScript());
             getBase().addObject(boxObject);
             return true;
         } else {
