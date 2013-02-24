@@ -1,0 +1,45 @@
+- Kopâ bûs 4 unikâli skati.
+	- Galvenais menu
+	- Lîmeòu izvçlne
+	- Story mode lîmenis
+	- Sandbox lîmenis
+	
+- Galvenajâ menu bûs pogas:
+	- Sâkt/turpinât
+	- Izvçlçties lîmeni
+	- Sandbox
+
+- Lîmeòu izvçlnç ir uzskaitîti visi izietie un neizietie lîmeòi un poga "atpakaï"
+- Spçles lîmeòu pogas:
+	- Pauze, kas iesaldç spçli un atver menu, kas satur tâs paðas pogas
+	  kas ir galvenajâ menu + Restart lîmeni.
+	- Restart poga, kas... restartç/notîra lîmeni.
+	- Visi pieejamie materiâli kâ pogas
+	- Destroy poga, kas ir neaktîva kamçr nav iezîmçts kâds materiâls.
+	- Neinteraktîvi UI elementi. (mçría augstums, materiâlu skaits etc.)
+- Spçles lîmeòos iespçjams bîdît skatu no pamatnes lîdz mçría augstumam.
+
+- Spçles logam aizveroties jebkura iemesla dçï spçle tiek iesaldçta.
+- Iesaldçjot spçli celtne tiek saglabâta.
+- Celtnes var ielâdçt/turpinât celt tikai atverot spçli ar "turpinât"
+  no galvenâ menu.
+  
+- Pieejamie materiâli:
+	- Dçlis
+	- Tçrauda stienis
+	- Betona bloks (kâ svars)
+	- Virve
+	- Baloni
+	- Trepes
+	
+- Katram materiâlam ir "socketi". Pie socketiem var stiprinât
+  citus materiâlus. Objekta katrâ galâ ir viens sockets. Ja objekts
+  ir vismaz 3x garâks nekâ platâks tad tâ vidû pârâdâs vçl viens sockets.
+  *piemçra attçls redzams GameDesignDocument failâ
+  
+- Trepçm ir tikai divi socketi visos gadîjumos.
+- Momentâ kad ir izveidota nepârtraukta trepju íçde lîdz augðai personâþi
+  sâk râpties augðâ.
+- Hilarity ensues.
+
+#Nav minçti cutscenes, jo nav stabili zinâms kâ to realizçsim.
