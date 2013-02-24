@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
  * @author Kristaps Kohs
@@ -24,7 +25,7 @@ public class BaseTest extends Game {
         base.toggleDebugRenderer();
         base.setGravity(0, -1f);
         base.setViewPort(10, 10);
-
+        base.setAmbientLight(0.5f);
 
         // Creates objects
         BoxObject boxObject = new BoxObject(new Vector2(0, 0), 0.1f, 0);
@@ -41,7 +42,10 @@ public class BaseTest extends Game {
         boxObject.addScript(new LightingScript());
         boxObject.addScript(new RenderScript());
         backgroundObject.addScript(new AddBoxScript());
+        TestButtonObject buttonObject = new TestButtonObject();
+        buttonObject.addScript(new ButtonScript());
 
+        base.loadAsset("uiskin.json", Skin.class);
         base.loadAsset("chain.png", Texture.class);
         base.getAssetManager().finishLoading();
         //Add object to game
@@ -50,6 +54,7 @@ public class BaseTest extends Game {
         base.addObject(floorObject2);
         base.addObject(floorObject3);
         base.addObject(backgroundObject);
+        base.addObject(buttonObject);
     }
 
     @Override

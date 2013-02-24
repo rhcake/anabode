@@ -156,8 +156,8 @@ public final class Base implements Disposable {
             }
         }
         batch.end();
-        uiStage.draw();
         rayHandler.render();
+        uiStage.draw();
     }
 
     /**
