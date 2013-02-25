@@ -214,5 +214,23 @@ public abstract class GameObject implements Disposable {
                 script.onGuiTouch();
             }
         }
+
+        @Override
+        public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            super.enter(event, x, y, pointer, fromActor);
+            for (ActionScript script : scripts) {
+                script.onGuiEnter();
+            }
+        }
+
+        @Override
+        public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            super.exit(event, x, y, pointer, toActor);
+            for (ActionScript script : scripts) {
+                script.onGuiExit();
+            }
+        }
     }
+
+
 }

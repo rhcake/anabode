@@ -74,6 +74,12 @@ public abstract class ActionScript implements Disposable {
     protected void onGuiTouch() {
     }
 
+    protected void onGuiEnter() {
+    }
+
+    protected void onGuiExit() {
+    }
+
     public boolean isEnabled() {
         return enabled;
     }

@@ -19,4 +19,14 @@ public class ButtonScript extends ActionScript {
     protected void onGuiTouch() {
         Gdx.app.log("Button", "Button has been pressed!!");
     }
+
+    @Override
+    protected void onGuiEnter() {
+        Gdx.app.log("Button", "Mouse is over button!!!!");
+    }
+
+    @Override
+    protected void onGuiExit() {
+        Gdx.app.log("Button", "Mouse left button!!!!");
+    }
 }
