@@ -4,7 +4,6 @@ import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -69,10 +68,6 @@ public final class Base implements Disposable {
      */
     private SpriteBatch batch;
     /**
-     * Asset manager
-     */
-    private AssetManager assetManager;
-    /**
      * Debug renderer.
      */
     private Box2DDebugRenderer dDebugRenderer;
@@ -105,7 +100,6 @@ public final class Base implements Disposable {
         inputMultiplexer.addProcessor(uiStage);
         inputMultiplexer.addProcessor(new TouchProcessor(this));
         dDebugRenderer = new Box2DDebugRenderer();
-        assetManager = new AssetManager();
         rayHandler = new RayHandler(physicsWorld);
         initialized = true;
     }
@@ -121,12 +115,6 @@ public final class Base implements Disposable {
             fpsLogger.log();
         }
         rayHandler.setCombinedMatrix(camera.combined);
-        if (!assetLoadingFinished()) {
-            if (debug) {
-                Gdx.app.log("Loading assets, progress ", "" + getAssetProgress());
-            }
-            assetManager.update();
-        }
         physicsWorld.step(UPDATE_STEP, VELOCITY_ITERATION_STEP, POSITION_ITERATION_STEP);
         for (GameObject gameObject : objects) {
             gameObject.update();
@@ -227,48 +215,6 @@ public final class Base implements Disposable {
             throw new IllegalStateException("Base not initialized!");
         }
         return camera;
-    }
-
-    public final AssetManager getAssetManager() {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        return assetManager;
-    }
-
-    public final <T> void loadAsset(final String name, final Class<T> type) {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        assetManager.load(name, type);
-    }
-
-    public final <T> T getAsset(final String name, final Class<T> type) {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        return assetManager.get(name, type);
-    }
-
-    public final <T> T getAsset(final String name) {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        return assetManager.get(name);
-    }
-
-    public final boolean assetLoadingFinished() {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        return assetManager.getProgress() == 1;
-    }
-
-    public final float getAssetProgress() {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
-        return assetManager.getProgress();
     }
 
     public void setGravity(float x, float y) {
@@ -400,7 +346,6 @@ public final class Base implements Disposable {
 
         rayHandler.dispose();
         uiStage.dispose();
-        assetManager.dispose();
         dDebugRenderer.dispose();
         batch.dispose();
         physicsWorld.dispose();

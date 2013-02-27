@@ -2,6 +2,7 @@ package com.anabode.fw.test;
 
 import box2dLight.ConeLight;
 import com.anabode.fw.GameObject;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -23,9 +24,12 @@ public class BoxObject extends GameObject {
     private Vector2 position;
     private Vector2 dimension = new Vector2();
     private float angle;
+    private final AssetManager assetManager;
 
-    public BoxObject(Vector2 position, float width, float angle) {
+
+    public BoxObject(Vector2 position, float width, float angle, AssetManager assetManager) {
         this.position = position;
+        this.assetManager = assetManager;
         this.dimension.x = width;
         this.angle = angle;
         this.dimension.y = .5f;
@@ -34,7 +38,7 @@ public class BoxObject extends GameObject {
     @Override
     public void create() {
         addAttribute("position", position);
-        Sprite sprite = new Sprite(getAsset("chain.png", Texture.class));
+        Sprite sprite = new Sprite(assetManager.get("chain.png", Texture.class));
         addAttribute("texture", sprite);
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);

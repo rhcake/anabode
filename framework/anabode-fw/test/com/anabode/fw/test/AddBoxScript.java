@@ -2,6 +2,7 @@ package com.anabode.fw.test;
 
 import com.anabode.fw.ActionScript;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -14,6 +15,11 @@ import com.badlogic.gdx.math.Vector2;
 public class AddBoxScript extends ActionScript implements InputProcessor {
     private final Vector2 startPos = new Vector2();
     private final Vector2 tempVector = new Vector2();
+    private final AssetManager assetManager;
+
+    public AddBoxScript(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
 
     @Override
     public void initialize() {
@@ -48,7 +54,7 @@ public class AddBoxScript extends ActionScript implements InputProcessor {
             float angle = tempVector.angle();
             float width = startPos.dst(toScreenCords(screenX, screenY)) * .5f;
             if (width < 0.01f) return false;
-            BoxObject boxObject = new BoxObject(startPos.cpy(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians);
+            BoxObject boxObject = new BoxObject(startPos.cpy(), startPos.dst(toScreenCords(screenX, screenY)) * .5f, angle * MathUtils.degreesToRadians, assetManager);
             boxObject.addScript(new AttachmentScript());
             boxObject.addScript(new LightingScript());
             boxObject.addScript(new RenderScript());

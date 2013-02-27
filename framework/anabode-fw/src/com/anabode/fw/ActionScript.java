@@ -167,14 +167,6 @@ public abstract class ActionScript implements Disposable {
         return parent.getBase();
     }
 
-    protected final <T> T getAsset(final String name, final Class<T> type) {
-        return parent.getAsset(name, type);
-    }
-
-    protected final <T> T getAsset(final String name) {
-        return parent.getAsset(name);
-    }
-
     protected final RayHandler getRayHandler() {
         return parent.getRayHandler();
     }
