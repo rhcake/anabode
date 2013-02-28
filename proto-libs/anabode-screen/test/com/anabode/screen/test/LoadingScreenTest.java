@@ -59,6 +59,10 @@ public class LoadingScreenTest extends GameManager {
             batch = new SpriteBatch();
             testManager = new AssetManager();
             testManager.load("data/test/test2.jpg", Texture.class);
+            testManager.load("data/test/test3.jpg", Texture.class);
+            testManager.load("data/test/test4.jpg", Texture.class);
+            testManager.load("data/test/test5.jpg", Texture.class);
+            testManager.load("data/test/test6.jpg", Texture.class);
             testManager.load("data/test/test.jpg", Texture.class);
         }
 

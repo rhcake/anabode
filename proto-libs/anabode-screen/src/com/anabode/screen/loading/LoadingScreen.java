@@ -86,7 +86,7 @@ public class LoadingScreen extends AbstractScreen {
             }
 
 
-            percent = Interpolation.linear.apply(percent, progress, 0.1f);
+            percent = Interpolation.linear.apply(percent, progress, 1f);
 
             // Update positions (and size) to match the percentage
             loadingBarHidden.setX(startX + endX * percent);
