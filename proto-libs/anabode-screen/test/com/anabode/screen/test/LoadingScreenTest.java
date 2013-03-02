@@ -1,15 +1,9 @@
 package com.anabode.screen.test;
 
-import com.anabode.fw.Base;
-import com.anabode.screen.AbstractScreen;
 import com.anabode.screen.GameManager;
 import com.anabode.screen.loading.LoadingScreen;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
@@ -41,79 +35,11 @@ public class LoadingScreenTest extends GameManager {
         setLoadingScreen(screen);
 
         addScreen(new TestScreen(this));
-        showScreen("TESTSCREEN");
+        addScreen(new TestScreen2(this));
+        showScreen(TestScreen.NAME);
 
     }
 
-    private class TestScreen extends AbstractScreen {
-        private AssetManager testManager;
-        private SpriteBatch batch;
-        private Sprite sprite;
-
-        protected TestScreen(GameManager gameManager) {
-            super(gameManager);
-        }
-
-        @Override
-        protected void init() {
-            batch = new SpriteBatch();
-            testManager = new AssetManager();
-            testManager.load("data/test/test2.jpg", Texture.class);
-            testManager.load("data/test/test3.jpg", Texture.class);
-            testManager.load("data/test/test4.jpg", Texture.class);
-            testManager.load("data/test/test5.jpg", Texture.class);
-            testManager.load("data/test/test6.jpg", Texture.class);
-            testManager.load("data/test/test.jpg", Texture.class);
-        }
-
-        @Override
-        public Base getBase() {
-            return null;
-        }
-
-        @Override
-        public AssetManager getAssetManager() {
-            return testManager;
-        }
-
-        @Override
-        public String getScreenName() {
-            return "TESTSCREEN";
-        }
-
-        @Override
-        public void render(float delta) {
-            batch.begin();
-            sprite.draw(batch);
-            batch.end();
-        }
-
-        @Override
-        public void resize(int width, int height) {
-        }
-
-        @Override
-        public void show() {
-            sprite = new Sprite(testManager.get("data/test/test.jpg", Texture.class));
-            sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        }
-
-        @Override
-        public void hide() {
-        }
-
-        @Override
-        public void pause() {
-        }
-
-        @Override
-        public void resume() {
-        }
-
-        @Override
-        public void dispose() {
-        }
-    }
 
     public static void main(String[] args) {
         new LwjglApplication(new LoadingScreenTest(), "Loadin", 680, 480, true);

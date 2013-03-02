@@ -102,6 +102,10 @@ public final class Base implements Disposable {
         dDebugRenderer = new Box2DDebugRenderer();
         rayHandler = new RayHandler(physicsWorld);
         initialized = true;
+        for(GameObject object : objects) {
+            object.create();
+            object.initialize();
+        }
     }
 
     /**
@@ -154,12 +158,11 @@ public final class Base implements Disposable {
      * @param gameObject object to add.
      */
     public void addObject(GameObject gameObject) {
-        if (!initialized) {
-            throw new IllegalStateException("Base not initialized!");
-        }
         gameObject.setBase(this);
-        gameObject.create();
-        gameObject.initialize();
+        if(initialized){
+            gameObject.create();
+            gameObject.initialize();
+        }
         if (gameObject.getName() != null) {
             referencedObjects.put(gameObject.getName(), gameObject);
         }
