@@ -1,7 +1,7 @@
 package com.anabode.fw.test;
 
-import com.anabode.fw.AbstractScreen;
-import com.anabode.fw.MultiScreenAssetManager;
+import com.anabode.screen.AbstractScreen;
+import com.anabode.screen.MultiScreenAssetManager;
 
 /**
  * @author Modris Vekmanis

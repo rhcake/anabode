@@ -1,6 +1,6 @@
 package com.anabode.fw.test;
 
-import com.anabode.fw.GameController;
+import com.anabode.screen.GameController;
 import com.badlogic.gdx.Gdx;
 
 /**

@@ -1,7 +1,7 @@
 package com.anabode.fw.test;
 
-import com.anabode.fw.AbstractScreen;
 import com.anabode.fw.ActionScript;
+import com.anabode.screen.AbstractScreen;
 import com.badlogic.gdx.Gdx;
 
 /**

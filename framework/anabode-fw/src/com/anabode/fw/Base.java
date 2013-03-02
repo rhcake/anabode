@@ -4,7 +4,10 @@ import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -96,13 +99,12 @@ public final class Base implements Disposable {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         physicsWorld.setContactListener(new CollisionListener());
-        Gdx.input.setInputProcessor(inputMultiplexer);
         inputMultiplexer.addProcessor(uiStage);
         inputMultiplexer.addProcessor(new TouchProcessor(this));
         dDebugRenderer = new Box2DDebugRenderer();
         rayHandler = new RayHandler(physicsWorld);
         initialized = true;
-        for(GameObject object : objects) {
+        for (GameObject object : objects) {
             object.create();
             object.initialize();
         }
@@ -158,7 +160,7 @@ public final class Base implements Disposable {
      */
     public void addObject(GameObject gameObject) {
         gameObject.setBase(this);
-        if(initialized){
+        if (initialized) {
             gameObject.create();
             gameObject.initialize();
         }
@@ -331,6 +333,10 @@ public final class Base implements Disposable {
             throw new IllegalStateException("Base not initialized!");
         }
         rayHandler.setBlur(blur);
+    }
+
+    public void processInput() {
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.anabode.fw;
+package com.anabode.screen;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;

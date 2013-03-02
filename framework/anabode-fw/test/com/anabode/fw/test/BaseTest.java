@@ -1,7 +1,7 @@
 package com.anabode.fw.test;
 
-import com.anabode.fw.AbstractScreen;
 import com.anabode.fw.Base;
+import com.anabode.screen.AbstractScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;

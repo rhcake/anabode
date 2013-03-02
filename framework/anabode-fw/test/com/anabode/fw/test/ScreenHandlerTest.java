@@ -1,6 +1,6 @@
 package com.anabode.fw.test;
 
-import com.anabode.fw.ScreenHandler;
+import com.anabode.screen.ScreenHandler;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 
 /**

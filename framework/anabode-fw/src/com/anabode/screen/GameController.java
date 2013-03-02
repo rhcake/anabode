@@ -1,4 +1,4 @@
-package com.anabode.fw;
+package com.anabode.screen;
 
 /**
  * @author Modris Vekmanis
