@@ -1,5 +1,6 @@
 package com.anabode.fw.test;
 
+import com.anabode.fw.AbstractScreen;
 import com.anabode.fw.ActionScript;
 import com.badlogic.gdx.Gdx;
 
@@ -10,6 +11,12 @@ import com.badlogic.gdx.Gdx;
  * @author Kristaps Kohs
  */
 public class ButtonScript extends ActionScript {
+    private AbstractScreen screen;
+
+    public ButtonScript(AbstractScreen screen) {
+        this.screen = screen;
+    }
+
     @Override
     protected void initialize() {
 
@@ -18,6 +25,14 @@ public class ButtonScript extends ActionScript {
     @Override
     protected void onGuiTouch() {
         Gdx.app.log("Button", "Button has been pressed!!");
+        if (screen.isVisible()) {
+            Gdx.app.log("Button", "Hiding screen: " + screen.getId());
+            screen.setVisible(false);
+        } else {
+            Gdx.app.log("Button", "Rendering screen: " + screen.getId());
+            screen.setVisible(true);
+
+        }
     }
 
     @Override

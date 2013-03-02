@@ -41,7 +41,7 @@
         <repository>
             <id>Afrika</id>
             <name>Afrika-releases</name>
-            <url>http://localhost:8081/artifactory/libgdx</url>
+            <url>http://afrika:8081/artifactory/libgdx</url>
         </repository>
     </repositories>
     <properties>

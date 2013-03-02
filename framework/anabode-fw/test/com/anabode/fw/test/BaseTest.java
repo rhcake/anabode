@@ -1,5 +1,6 @@
 package com.anabode.fw.test;
 
+import com.anabode.fw.AbstractScreen;
 import com.anabode.fw.Base;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
  */
 public class BaseTest extends Game {
     private Base base;
+    private AbstractScreen screen;
 
     public static void main(String[] args) {
         new LwjglApplication(new BaseTest(), "title", 800, 600, true);
@@ -47,7 +49,7 @@ public class BaseTest extends Game {
         boxObject.addScript(new RenderScript());
         backgroundObject.addScript(new AddBoxScript(assetManager));
         TestButtonObject buttonObject = new TestButtonObject(assetManager);
-        buttonObject.addScript(new ButtonScript());
+        buttonObject.addScript(new ButtonScript(screen));
 
 
         //Add object to game
@@ -68,5 +70,13 @@ public class BaseTest extends Game {
     @Override
     public void dispose() {
         base.dispose();
+    }
+
+    public Base getBase() {
+        return base;
+    }
+
+    public void setScreen(AbstractScreen screen) {
+        this.screen = screen;
     }
 }

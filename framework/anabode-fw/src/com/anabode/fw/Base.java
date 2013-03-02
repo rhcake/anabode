@@ -134,7 +134,6 @@ public final class Base implements Disposable {
         if (!initialized) {
             throw new IllegalStateException("Base not initialized!");
         }
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         camera.update();
         if (debug) {
             dDebugRenderer.render(physicsWorld, camera.combined);

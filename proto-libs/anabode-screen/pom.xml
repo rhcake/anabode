@@ -60,6 +60,11 @@
             <id>libgdx</id>
             <url>http://libgdx.badlogicgames.com/nightlies/maven/</url>
         </repository>
+        <repository>
+            <id>Afrika</id>
+            <name>Afrika-releases</name>
+            <url>http://afrika:8081/artifactory/libgdx</url>
+        </repository>
     </repositories>
     <properties>
         <lib.gdx.version>0.9.9-SNAPSHOT</lib.gdx.version>
