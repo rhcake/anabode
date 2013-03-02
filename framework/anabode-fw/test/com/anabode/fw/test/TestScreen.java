@@ -14,15 +14,16 @@ public class TestScreen extends AbstractScreen {
         baseTest = new BaseTest();
         baseTest.setScreen(this);
         baseTest.create();
+        base = baseTest.getBase();
     }
 
     @Override
     public void update() {
-        baseTest.getBase().update();
+        base.update();
     }
 
     @Override
     public void render(float delta) {
-        baseTest.getBase().render();
+        base.render();
     }
 }

@@ -16,6 +16,7 @@ public class TestController extends GameController {
         screen = new TestScreen();
         screen.setId("0");
         screenHandler.loadActiveScreen(screen);
+        screen.handleInput();
     }
 
     @Override
@@ -28,6 +29,7 @@ public class TestController extends GameController {
             additionalScreen.setId(String.valueOf(idCounter++));
             additionalScreen.setRenderOrder(idCounter);
             screenHandler.loadActiveScreen(additionalScreen);
+            additionalScreen.handleInput();
         } else if (frameCounter == 300 && idCounter > 2) {
             Gdx.app.log("TestController", "Unloading screen: " + (idCounter - 3));
             screenHandler.unloadScreen(String.valueOf(idCounter - 3));

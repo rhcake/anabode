@@ -1,16 +1,24 @@
 package com.anabode.screen;
 
+import com.anabode.fw.Base;
 import com.badlogic.gdx.Screen;
 
 /**
  * @author Modris Vekmanis
  */
 public abstract class AbstractScreen implements Screen {
+    protected Base base = null;
     private String id = null;
     private boolean visible = true;
     private int renderOrder = 0;
 
     public void create(MultiScreenAssetManager assetManager) {
+    }
+
+    public void handleInput() {
+        if (base != null) {
+            base.processInput();
+        }
     }
 
     public void update() {
