@@ -60,6 +60,7 @@
             <groupId>com.badlogic.gdx</groupId>
             <artifactId>gdx</artifactId>
             <version>${lib.gdx.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -72,12 +73,14 @@
             <groupId>com.badlogic.gdx</groupId>
             <artifactId>gdx-backend-lwjgl</artifactId>
             <version>${lib.gdx.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.badlogic.gdx</groupId>
             <artifactId>gdx-platform</artifactId>
             <version>${lib.gdx.version}</version>
             <type>pom</type>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

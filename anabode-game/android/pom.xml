@@ -106,25 +106,5 @@
             <version>${project.version}</version>
             <artifactId>core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.badlogic.gdx</groupId>
-            <artifactId>gdx-platform</artifactId>
-            <version>${lib.gdx.version}</version>
-            <type>pom</type>
-            <exclusions>
-                <exclusion>
-                    <artifactId>natives-win</artifactId>
-                    <groupId>com.badlogic.gdx</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>natives-mac</artifactId>
-                    <groupId>com.badlogic.gdx</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>natives-linux</artifactId>
-                    <groupId>com.badlogic.gdx</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 </project>
