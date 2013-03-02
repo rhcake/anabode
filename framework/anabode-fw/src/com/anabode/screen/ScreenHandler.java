@@ -46,6 +46,7 @@ public final class ScreenHandler implements ApplicationListener {
         }
 
         if (!loadedScreens.contains(screen)) {
+            screen.setController(controller);
             screen.create(assetManager);
             loadedScreens.add(screen);
         } else {

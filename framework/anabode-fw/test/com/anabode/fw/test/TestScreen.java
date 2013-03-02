@@ -22,7 +22,6 @@ public class TestScreen extends AbstractScreen {
         base.update();
     }
 
-    @Override
     public void render(float delta) {
         base.render();
     }

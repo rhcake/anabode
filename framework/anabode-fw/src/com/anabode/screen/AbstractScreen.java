@@ -2,12 +2,14 @@ package com.anabode.screen;
 
 import com.anabode.fw.Base;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * @author Modris Vekmanis
  */
-public abstract class AbstractScreen implements Screen {
+public abstract class AbstractScreen {
     protected Base base = null;
+    protected GameController controller;
     private String id = null;
     private boolean visible = true;
     private int renderOrder = 0;
@@ -24,33 +26,28 @@ public abstract class AbstractScreen implements Screen {
     public void update() {
     }
 
-    @Override
+
     public void render(float delta) {
     }
 
-    @Override
+
     public void resize(int width, int height) {
     }
 
-    @Override
+
     public void show() {
     }
 
-    @Override
+
     public void hide() {
     }
 
-    @Override
+
     public void pause() {
     }
 
-    @Override
-    public void resume() {
-    }
 
-    @Override
-    @Deprecated
-    public void dispose() {
+    public void resume() {
     }
 
     public void dispose(MultiScreenAssetManager assetManager) {
@@ -82,5 +79,9 @@ public abstract class AbstractScreen implements Screen {
         } else {
             throw new Exception("Screen already has an id: " + id);
         }
+    }
+
+    public void setController(GameController controller) {
+        this.controller = controller;
     }
 }
