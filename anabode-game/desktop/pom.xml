@@ -18,7 +18,7 @@
         </sourceDirectory>
         <resources>
             <resource>
-                <directory>resources</directory>
+                <directory>assets</directory>
             </resource>
         </resources>
         <testSourceDirectory>
