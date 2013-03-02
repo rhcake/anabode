@@ -69,6 +69,7 @@ public final class ScreenHandler implements ApplicationListener {
             if (id.equals(screen.getId())) {
                 activeScreens.remove(screen);
                 loadedScreens.remove(i);
+                screen.dispose(assetManager);
                 return;
             }
         }

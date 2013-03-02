@@ -1,7 +1,9 @@
 package com.anabode.controller;
 
 import com.anabode.screen.GameController;
+import com.anabode.screens.Menu;
 import com.anabode.screens.WelcomeScreen;
+import com.anabode.util.Constants;
 
 /**
  * @author Kristaps Kohs
@@ -15,10 +17,15 @@ public class SceneController extends GameController {
     }
 
     @Override
-    public void update() throws Exception {
+    public void update() {
     }
 
     public void continueOnWelcomeScreen() {
-        System.out.println("asd");
+        try {
+            screenHandler.unloadScreen(Constants.WELCOME_SCREEN);
+            screenHandler.loadActiveScreen(new Menu());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

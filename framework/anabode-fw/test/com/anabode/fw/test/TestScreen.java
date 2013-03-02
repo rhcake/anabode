@@ -25,4 +25,8 @@ public class TestScreen extends AbstractScreen {
     public void render(float delta) {
         base.render();
     }
+
+    @Override
+    public void resize(int width, int height) {
+    }
 }

@@ -5,5 +5,5 @@ package com.anabode.util;
  */
 public class Constants {
     public static String WELCOME_SCREEN = "WelcomeScreen";
-
+    public static String MENU_SCREEN = "MenuScreen";
 }

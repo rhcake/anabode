@@ -20,19 +20,25 @@ public class TestController extends GameController {
     }
 
     @Override
-    public void update() throws Exception {
-        frameCounter++;
-        if (frameCounter == 600) {
-            frameCounter = 0;
-            Gdx.app.log("TestController", "Loading additional screen");
-            TestScreen additionalScreen = new TestScreen();
-            additionalScreen.setId(String.valueOf(idCounter++));
-            additionalScreen.setRenderOrder(idCounter);
-            screenHandler.loadActiveScreen(additionalScreen);
-            additionalScreen.handleInput();
-        } else if (frameCounter == 300 && idCounter > 2) {
-            Gdx.app.log("TestController", "Unloading screen: " + (idCounter - 3));
-            screenHandler.unloadScreen(String.valueOf(idCounter - 3));
+    public void update() {
+        try {
+            frameCounter++;
+            if (frameCounter == 600) {
+                frameCounter = 0;
+                Gdx.app.log("TestController", "Loading additional screen");
+                TestScreen additionalScreen = new TestScreen();
+
+                additionalScreen.setId(String.valueOf(idCounter++));
+
+                additionalScreen.setRenderOrder(idCounter);
+                screenHandler.loadActiveScreen(additionalScreen);
+                additionalScreen.handleInput();
+            } else if (frameCounter == 300 && idCounter > 2) {
+                Gdx.app.log("TestController", "Unloading screen: " + (idCounter - 3));
+                screenHandler.unloadScreen(String.valueOf(idCounter - 3));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

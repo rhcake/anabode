@@ -8,7 +8,7 @@ public abstract class GameController {
 
     public abstract void initialize() throws Exception;
 
-    public abstract void update() throws Exception;
+    public abstract void update();
 
     public void setScreenHandler(ScreenHandler screenHandler) {
         this.screenHandler = screenHandler;

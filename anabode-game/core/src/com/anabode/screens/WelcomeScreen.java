@@ -16,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class WelcomeScreen extends AbstractScreen {
     private WelcomeScreenInputHandler inputHandler;
     private SpriteBatch batch;
-    private Sprite welcomeScreen;
+    private Sprite background;
 
     public WelcomeScreen() throws Exception {
         this.setId(Constants.WELCOME_SCREEN);
@@ -29,18 +29,14 @@ public class WelcomeScreen extends AbstractScreen {
         batch = new SpriteBatch();
         assetManager.load("WelcomeScreen.png", Texture.class);
         assetManager.finishLoading();
-        welcomeScreen = new Sprite(assetManager.get("WelcomeScreen.png", Texture.class));
-    }
-
-    @Override
-    public void update() {
+        background = new Sprite(assetManager.get("WelcomeScreen.png", Texture.class));
     }
 
     @Override
     public void render(float delta) {
         batch.begin();
-        welcomeScreen.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        welcomeScreen.draw(batch);
+        background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        background.draw(batch);
         batch.end();
     }
 
@@ -52,6 +48,7 @@ public class WelcomeScreen extends AbstractScreen {
     @Override
     public void dispose(MultiScreenAssetManager assetManager) {
         assetManager.unload("WelcomeScreen.png");
+        Gdx.input.setInputProcessor(null);
     }
 
     private class WelcomeScreenInputHandler extends InputAdapter {
