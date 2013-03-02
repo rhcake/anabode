@@ -4,9 +4,10 @@ import com.anabode.controller.SceneController;
 import com.anabode.screen.AbstractScreen;
 import com.anabode.screen.MultiScreenAssetManager;
 import com.anabode.util.Constants;
-import com.anabode.util.InputHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -15,7 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class WelcomeScreen extends AbstractScreen {
     private WelcomeScreenInputHandler inputHandler;
     private SpriteBatch batch;
-    private Texture welcomeScreen;
+    private Sprite welcomeScreen;
 
     public WelcomeScreen() throws Exception {
         this.setId(Constants.WELCOME_SCREEN);
@@ -28,7 +29,7 @@ public class WelcomeScreen extends AbstractScreen {
         batch = new SpriteBatch();
         assetManager.load("WelcomeScreen.png", Texture.class);
         assetManager.finishLoading();
-        welcomeScreen = assetManager.get("WelcomeScreen.png", Texture.class);
+        welcomeScreen = new Sprite(assetManager.get("WelcomeScreen.png", Texture.class));
     }
 
     @Override
@@ -38,7 +39,8 @@ public class WelcomeScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         batch.begin();
-        batch.draw(welcomeScreen, 0, 0);
+        welcomeScreen.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        welcomeScreen.draw(batch);
         batch.end();
     }
 
@@ -52,7 +54,7 @@ public class WelcomeScreen extends AbstractScreen {
         assetManager.unload("WelcomeScreen.png");
     }
 
-    private class WelcomeScreenInputHandler extends InputHandler {
+    private class WelcomeScreenInputHandler extends InputAdapter {
         @Override
         public boolean keyDown(int keycode) {
             ((SceneController) controller).continueOnWelcomeScreen();
