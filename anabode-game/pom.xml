@@ -8,6 +8,7 @@
     <artifactId>anabode-game</artifactId>
     <packaging>pom</packaging>
     <version>0.1</version>
+    <name>Anabode</name>
     <modules>
         <module>core</module>
         <module>desktop</module>

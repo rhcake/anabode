@@ -7,8 +7,9 @@
         <groupId>com.anabode</groupId>
         <version>0.1</version>
     </parent>
+    <packaging>apk</packaging>
     <modelVersion>4.0.0</modelVersion>
-
+    <name>Anabode Android</name>
     <artifactId>android</artifactId>
 
     <build>
@@ -39,6 +40,19 @@
                     <target>1.6</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+                    <resourceDirectory>${project.basedir}/res</resourceDirectory>
+                    <sdk>
+                        <platform>17</platform>
+                    </sdk>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                </configuration>
+                <extensions>true</extensions>
             </plugin>
         </plugins>
 
@@ -97,6 +111,20 @@
             <artifactId>gdx-platform</artifactId>
             <version>${lib.gdx.version}</version>
             <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <artifactId>natives-win</artifactId>
+                    <groupId>com.badlogic.gdx</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>natives-mac</artifactId>
+                    <groupId>com.badlogic.gdx</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>natives-linux</artifactId>
+                    <groupId>com.badlogic.gdx</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
