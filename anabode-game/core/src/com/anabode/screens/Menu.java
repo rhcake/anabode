@@ -24,7 +24,8 @@ public class Menu extends AbstractScreen {
         batch = new SpriteBatch();
         assetManager.load("textures/backgrounds/backgrounds.atlas", TextureAtlas.class);
         assetManager.finishLoading();
-        background = assetManager.get("textures/backgrounds/backgrounds.atlas", TextureAtlas.class).createSprite("MenuScreen");
+        //background = assetManager.get("textures/backgrounds/backgrounds.atlas", TextureAtlas.class).createSprite("MenuScreen");
+        background = assetManager.getSprite("textures/backgrounds/backgrounds.atlas", "MenuScreen");
     }
 
     @Override

@@ -29,7 +29,8 @@ public class WelcomeScreen extends AbstractScreen {
         batch = new SpriteBatch();
         assetManager.load("textures/ui/ui.atlas", TextureAtlas.class);
         assetManager.finishLoading();
-        background = assetManager.get("textures/ui/ui.atlas", TextureAtlas.class).createSprite("WelcomeScreen");
+        //background = assetManager.get("textures/ui/ui.atlas", TextureAtlas.class).createSprite("WelcomeScreen");
+        background = assetManager.getSprite("textures/ui/ui.atlas", "WelcomeScreen");
     }
 
     @Override
