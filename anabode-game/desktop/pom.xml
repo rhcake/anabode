@@ -18,7 +18,7 @@
         </sourceDirectory>
         <resources>
             <resource>
-                <directory>assets</directory>
+                <directory>../assets</directory>
             </resource>
         </resources>
         <testSourceDirectory>
@@ -76,6 +76,11 @@
         <dependency>
             <groupId>com.badlogic.gdx</groupId>
             <artifactId>gdx-backend-lwjgl</artifactId>
+            <version>${lib.gdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogic.gdx</groupId>
+            <artifactId>gdx-tools</artifactId>
             <version>${lib.gdx.version}</version>
         </dependency>
         <dependency>

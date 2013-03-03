@@ -6,9 +6,9 @@ import com.anabode.screen.MultiScreenAssetManager;
 import com.anabode.util.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
  * @author Modris Vekmanis
@@ -27,9 +27,9 @@ public class WelcomeScreen extends AbstractScreen {
     @Override
     public void create(MultiScreenAssetManager assetManager) {
         batch = new SpriteBatch();
-        assetManager.load("WelcomeScreen.png", Texture.class);
+        assetManager.load("textures/ui/ui.atlas", TextureAtlas.class);
         assetManager.finishLoading();
-        background = new Sprite(assetManager.get("WelcomeScreen.png", Texture.class));
+        background = assetManager.get("textures/ui/ui.atlas", TextureAtlas.class).createSprite("WelcomeScreen");
     }
 
     @Override
@@ -47,7 +47,6 @@ public class WelcomeScreen extends AbstractScreen {
 
     @Override
     public void dispose(MultiScreenAssetManager assetManager) {
-        assetManager.unload("WelcomeScreen.png");
         Gdx.input.setInputProcessor(null);
     }
 

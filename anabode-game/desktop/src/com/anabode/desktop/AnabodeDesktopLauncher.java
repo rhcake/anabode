@@ -3,6 +3,7 @@ package com.anabode.desktop;
 import com.anabode.controller.SceneController;
 import com.anabode.screen.ScreenHandler;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.tools.imagepacker.TexturePacker2;
 
 import java.util.prefs.Preferences;
 
@@ -11,6 +12,15 @@ import java.util.prefs.Preferences;
  */
 public class AnabodeDesktopLauncher {
     public static void main(String[] args) {
+
+        TexturePacker2.Settings settings = new TexturePacker2.Settings();
+        settings.maxWidth = 1024;
+        settings.maxHeight = 1024;
+        TexturePacker2.process(settings, "assets-prepacked/textures/backgrounds", "assets/textures/backgrounds", "backgrounds");
+        TexturePacker2.process(settings, "assets-prepacked/textures/ui", "assets/textures/ui", "ui");
+        TexturePacker2.process(settings, "assets-prepacked/textures/objects", "assets/textures/objects", "objects");
+
+
         ScreenHandler screenHandler = new ScreenHandler();
         screenHandler.setController(new SceneController());
 

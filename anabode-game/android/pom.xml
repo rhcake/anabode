@@ -26,7 +26,7 @@
         </testResources>
         <resources>
             <resource>
-                <directory>assets</directory>
+                <directory>../assets</directory>
             </resource>
             <resource>
                 <directory>res</directory>
@@ -45,7 +45,7 @@
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <configuration>
-                    <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+                    <assetsDirectory>../assets</assetsDirectory>
                     <resourceDirectory>${project.basedir}/res</resourceDirectory>
                     <sdk>
                         <platform>17</platform>

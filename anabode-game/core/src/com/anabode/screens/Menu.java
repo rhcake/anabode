@@ -4,9 +4,9 @@ import com.anabode.screen.AbstractScreen;
 import com.anabode.screen.MultiScreenAssetManager;
 import com.anabode.util.Constants;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
  * @author Modris Vekmanis
@@ -22,9 +22,9 @@ public class Menu extends AbstractScreen {
     @Override
     public void create(MultiScreenAssetManager assetManager) {
         batch = new SpriteBatch();
-        assetManager.load("MenuScreen.png", Texture.class);
+        assetManager.load("textures/backgrounds/backgrounds.atlas", TextureAtlas.class);
         assetManager.finishLoading();
-        background = new Sprite(assetManager.get("MenuScreen.png", Texture.class));
+        background = assetManager.get("textures/backgrounds/backgrounds.atlas", TextureAtlas.class).createSprite("MenuScreen");
     }
 
     @Override
