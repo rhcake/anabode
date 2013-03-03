@@ -12,13 +12,13 @@ import java.util.Map;
  * @author Modris Vekmanis
  */
 public class MultiScreenAssetManager extends AssetManager {
-    private Map<String, Map<String, Sprite>> atlasCache;
+    private final Map<String, Map<String, Sprite>> atlasCache;
 
     public MultiScreenAssetManager() {
         atlasCache = new HashMap<String, Map<String, Sprite>>();
     }
 
-    public Sprite getSprite(String atlas, String name) {
+    public synchronized Sprite getSprite(String atlas, String name) {
         if (atlasCache.containsKey(atlas)) {
             Map<String, Sprite> spriteCache = atlasCache.get(atlas);
             if (spriteCache.containsKey(name)) {
@@ -40,5 +40,14 @@ public class MultiScreenAssetManager extends AssetManager {
             }
         }
         return null;
+    }
+
+    @Override
+    public synchronized void unload(String fileName) {
+        if (atlasCache.containsKey(fileName)) {
+            atlasCache.get(fileName).clear();
+            atlasCache.remove(fileName);
+        }
+        super.unload(fileName);
     }
 }
