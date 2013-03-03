@@ -16,9 +16,9 @@ public class AnabodeDesktopLauncher {
         TexturePacker2.Settings settings = new TexturePacker2.Settings();
         settings.maxWidth = 1024;
         settings.maxHeight = 1024;
-        TexturePacker2.process(settings, "assets-prepacked/textures/backgrounds", "assets/textures/backgrounds", "backgrounds");
-        TexturePacker2.process(settings, "assets-prepacked/textures/ui", "assets/textures/ui", "ui");
-        TexturePacker2.process(settings, "assets-prepacked/textures/objects", "assets/textures/objects", "objects");
+        TexturePacker2.process(settings, "assets-prepacked/textures/welcome/", "assets/textures/welcome", "welcome");
+        TexturePacker2.process(settings, "assets-prepacked/textures//menu/", "assets/textures/menu", "menu");
+        TexturePacker2.process(settings, "assets-prepacked/textures/level1", "assets/textures/level1", "level1");
 
 
         ScreenHandler screenHandler = new ScreenHandler();

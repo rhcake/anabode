@@ -1,19 +1,24 @@
 package com.anabode.screens;
 
+import com.anabode.controller.SceneController;
+import com.anabode.fw.Base;
+import com.anabode.objects.ui.Button;
 import com.anabode.screen.AbstractScreen;
 import com.anabode.screen.MultiScreenAssetManager;
+import com.anabode.scripts.ui.NewGameScript;
 import com.anabode.util.Constants;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * @author Modris Vekmanis
  */
 public class Menu extends AbstractScreen {
-    private SpriteBatch batch;
-    private Sprite background;
+    public static final String TEXTURE_ATLAS_NAME = "textures/menu/menu.atlas";
+    public static final String BUTTON_UP_IMAGE = "newGameUp";
+    public static final String BUTTON_DOWN_IMAGE = "newGameDown";
+
+    private Base menuBase;
+
 
     public Menu() throws Exception {
         this.setId(Constants.MENU_SCREEN);
@@ -21,23 +26,29 @@ public class Menu extends AbstractScreen {
 
     @Override
     public void create(MultiScreenAssetManager assetManager) {
-        batch = new SpriteBatch();
-        assetManager.load("textures/backgrounds/backgrounds.atlas", TextureAtlas.class);
-        assetManager.finishLoading();
-        //background = assetManager.get("textures/backgrounds/backgrounds.atlas", TextureAtlas.class).createSprite("MenuScreen");
-        background = assetManager.getSprite("textures/backgrounds/backgrounds.atlas", "MenuScreen");
+        base = new Base();
+
+        Button button = new Button
+                (assetManager.getSprite(TEXTURE_ATLAS_NAME, BUTTON_UP_IMAGE), assetManager.getSprite(TEXTURE_ATLAS_NAME, BUTTON_DOWN_IMAGE),
+                        new Vector2(300, 400), new Vector2(200, 200));
+        button.setName("NewGameButton");
+        button.addScript(new NewGameScript((SceneController) controller));
+        base.addObject(button);
+
+        base.initialize();
+        base.processInput();
+
     }
 
     @Override
     public void render(float delta) {
-        batch.begin();
-        background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        background.draw(batch);
-        batch.end();
+        base.update();
+
+        base.render();
+
     }
 
     @Override
     public void dispose(MultiScreenAssetManager assetManager) {
-        assetManager.unload("MenuScreen.png");
     }
 }

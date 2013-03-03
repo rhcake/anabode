@@ -42,6 +42,10 @@ public abstract class GameObject implements Disposable {
         for (Object attribute : attributes.values()) {
             if (attribute instanceof Body) {
                 ((Body) attribute).setUserData(this);
+            } else if (attribute instanceof Actor) {
+                ((Actor) attribute).addListener(clickAction);
+                ui = true;
+                base.getUiStage().addActor((Actor) attribute);
             }
         }
     }

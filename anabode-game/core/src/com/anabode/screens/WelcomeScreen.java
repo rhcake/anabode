@@ -27,10 +27,11 @@ public class WelcomeScreen extends AbstractScreen {
     @Override
     public void create(MultiScreenAssetManager assetManager) {
         batch = new SpriteBatch();
-        assetManager.load("textures/ui/ui.atlas", TextureAtlas.class);
+        assetManager.load("textures/welcome/welcome.atlas", TextureAtlas.class);
+        assetManager.load(Menu.TEXTURE_ATLAS_NAME, TextureAtlas.class);
         assetManager.finishLoading();
         //background = assetManager.get("textures/ui/ui.atlas", TextureAtlas.class).createSprite("WelcomeScreen");
-        background = assetManager.getSprite("textures/ui/ui.atlas", "WelcomeScreen");
+        background = assetManager.getSprite("textures/welcome/welcome.atlas", "WelcomeScreen");
     }
 
     @Override
