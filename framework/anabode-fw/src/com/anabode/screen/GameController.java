@@ -13,4 +13,8 @@ public abstract class GameController {
     public void setScreenHandler(ScreenHandler screenHandler) {
         this.screenHandler = screenHandler;
     }
+
+    public ScreenHandler getScreenHandler() {
+        return screenHandler;
+    }
 }

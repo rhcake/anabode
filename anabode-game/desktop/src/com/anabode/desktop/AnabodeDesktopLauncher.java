@@ -19,6 +19,7 @@ public class AnabodeDesktopLauncher {
         TexturePacker2.process(settings, "assets-prepacked/textures/welcome/", "assets/textures/welcome", "welcome");
         TexturePacker2.process(settings, "assets-prepacked/textures//menu/", "assets/textures/menu", "menu");
         TexturePacker2.process(settings, "assets-prepacked/textures/level1", "assets/textures/level1", "level1");
+        TexturePacker2.process(settings, "assets-prepacked/textures/demolevel", "assets/textures/demolevel", "demo");
 
 
         ScreenHandler screenHandler = new ScreenHandler();

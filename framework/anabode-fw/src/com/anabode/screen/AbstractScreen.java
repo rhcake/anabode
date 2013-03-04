@@ -14,8 +14,7 @@ public abstract class AbstractScreen {
     private boolean visible = true;
     private int renderOrder = 0;
 
-    public void create(MultiScreenAssetManager assetManager) {
-    }
+    public abstract void create(MultiScreenAssetManager assetManager);
 
     public void handleInput() {
         if (base != null) {
@@ -73,11 +72,11 @@ public abstract class AbstractScreen {
         return id;
     }
 
-    public void setId(String id) throws Exception {
+    public void setId(String id){
         if (this.id == null) {
             this.id = id;
         } else {
-            throw new Exception("Screen already has an id: " + id);
+            throw new RuntimeException("Screen already has an id: " + id);
         }
     }
 

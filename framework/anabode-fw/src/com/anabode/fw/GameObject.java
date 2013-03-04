@@ -1,9 +1,12 @@
 package com.anabode.fw;
 
 import box2dLight.RayHandler;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -20,6 +23,9 @@ import java.util.Map;
  * @author Kristaps Kohs
  */
 public abstract class GameObject implements Disposable {
+
+    private final Vector2 vector2 = new Vector2();
+    private final Vector3 vector3 = new Vector3();
 
     private final Map<String, Object> attributes = new HashMap<String, Object>();
     private final List<ActionScript> scripts = new LinkedList<ActionScript>();
@@ -189,6 +195,41 @@ public abstract class GameObject implements Disposable {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Translates given vector to screen coordinates. Note returned vector is only usable to reading values DO NOT use it for computation.
+     *
+     * @param pos coordinates to translate.
+     * @return translated coordinates.
+     */
+    protected final Vector2 toScreenCords(Vector2 pos) {
+        return toScreenCords(pos.x, pos.y);
+    }
+
+    /**
+     * Translates given coordinates to screen coordinates. Note returned vector is only usable to reading values DO NOT use it for computation.
+     *
+     * @param x x coordinate to translate.
+     * @param y y coordinate to translate.
+     * @return translated coordinates.
+     */
+    protected final Vector2 toScreenCords(float x, float y) {
+        vector3.set(x, y, 0);
+        getCamera().unproject(vector3);
+        return vector2.set(vector3.x, vector3.y);
+    }
+
+    protected final Vector2 toWindowCords(float x, float y) {
+        vector3.set(x, y, 0);
+        getCamera().project(vector3);
+        return vector2.set(vector3.x, vector3.y);
+    }
+
+    protected final Vector2 getPointer() {
+        vector3.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        getCamera().unproject(vector3);
+        return vector2.set(vector3.x, vector3.y);
     }
 
     private final class ClickAction extends ClickListener {

@@ -14,9 +14,6 @@ import com.badlogic.gdx.utils.Disposable;
  */
 public abstract class ActionScript implements Disposable {
 
-    private final Vector2 vector2 = new Vector2();
-    private final Vector3 vector3 = new Vector3();
-
     private GameObject parent;
     private boolean enabled = true;
     private long period = 0;
@@ -112,9 +109,7 @@ public abstract class ActionScript implements Disposable {
     }
 
     protected final Vector2 getPointer() {
-        vector3.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        parent.getCamera().unproject(vector3);
-        return vector2.set(vector3.x, vector3.y);
+        return parent.getPointer();
     }
 
     protected final GameObject getSelectionSource() {
@@ -152,15 +147,11 @@ public abstract class ActionScript implements Disposable {
      * @return translated coordinates.
      */
     protected final Vector2 toScreenCords(float x, float y) {
-        vector3.set(x, y, 0);
-        parent.getCamera().unproject(vector3);
-        return vector2.set(vector3.x, vector3.y);
+        return parent.toScreenCords(x, y);
     }
 
     protected final Vector2 toWindowCords(float x, float y) {
-        vector3.set(x, y, 0);
-        parent.getCamera().project(vector3);
-        return vector2.set(vector3.x, vector3.y);
+        return parent.toWindowCords(x, y);
     }
 
     protected Base getBase() {

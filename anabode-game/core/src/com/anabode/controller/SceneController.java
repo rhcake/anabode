@@ -1,8 +1,8 @@
 package com.anabode.controller;
 
 import com.anabode.screen.GameController;
-import com.anabode.screens.Menu;
 import com.anabode.screens.WelcomeScreen;
+import com.anabode.screens.menu.Menu;
 import com.anabode.util.Constants;
 
 /**
@@ -18,6 +18,7 @@ public class SceneController extends GameController {
 
     @Override
     public void update() {
+
     }
 
     public void continueOnWelcomeScreen() {

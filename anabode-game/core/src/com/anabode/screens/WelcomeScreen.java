@@ -3,6 +3,7 @@ package com.anabode.screens;
 import com.anabode.controller.SceneController;
 import com.anabode.screen.AbstractScreen;
 import com.anabode.screen.MultiScreenAssetManager;
+import com.anabode.screens.menu.Menu;
 import com.anabode.util.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;

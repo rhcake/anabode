@@ -158,6 +158,10 @@ public final class ScreenHandler implements ApplicationListener {
         }
     }
 
+    public boolean assetsLoaded() {
+       return assetManager.getProgress() == 1.0f;
+    }
+
     @SuppressWarnings("unused")
     public void setController(GameController controller) {
         this.controller = controller;
