@@ -28,7 +28,7 @@ public class BaseTest extends Game {
         base.toggleDebugRenderer();
         base.setGravity(0, -1f);
         base.setViewPort(10, 10);
-        base.setAmbientLight(0.5f);
+        base.setAmbientLight(0f);
         AssetManager assetManager = new AssetManager();
         assetManager.load("uiskin.json", Skin.class);
         assetManager.load("chain.png", Texture.class);

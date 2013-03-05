@@ -1,4 +1,4 @@
-package com.anabode.objects.materials;
+package com.anabode.objects.environment;
 
 import com.anabode.fw.GameObject;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -13,27 +13,35 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import static com.anabode.util.Constants.*;
 
 /**
- * @author Kristaps Kohs
+ * Date: 13.5.3
+ * Time: 09:58
+ *
+ * @author Kirstaps Kohs
  */
-public class WoodBoard extends GameObject {
+public class ShaftWall extends GameObject {
+    public static final float SHAFT_WALL_DENSITY = 50f;
+    public static final float SHAFT_WALL_FRICTION = 0.9f;
 
-    public static final float WOOD_BOARD_DENSITY = 1f;
-    public static final float WOOD_BOARD_FRICTION = 0.5f;
-    private Sprite sprite;
+    public static final float SHAFT_WALL_THICKNESS_PERCENT = 20;
+    public static final float SHAFT_WALL_HEIGHT_PERCENT = 90;
+
+    public static final float SHAFT_FLOOR_THICKNESS_PERCENT = 100 - SHAFT_WALL_THICKNESS_PERCENT * 2;
+    public static final float SHAFT_FLOOR_HEIGHT_PERCENT = 2;
+
     private Vector2 position;
     private Vector2 dimension;
     private Vector2 origin;
-    //DO not use this angle use angle from body instead.
-    private float angle;
     private Body body;
+    private Sprite sprite;
 
-    public WoodBoard(Sprite sprite, Vector2 position, Vector2 dimension, Vector2 origin, Float angle) {
-        this.sprite = sprite;
+
+    public ShaftWall(Vector2 position, Vector2 dimension, Sprite sprite) {
         this.position = position;
         this.dimension = dimension;
-        this.origin = origin;
-        this.angle = angle;
-        setLayer(CONSTRUCTION_OBJECT_RENDER_LAYER);
+        this.sprite = sprite;
+        this.origin = new Vector2(dimension.x * .5f, dimension.y * .5f);
+
+        setLayer(ENVIRONMENT_OBJECT_RENDER_LAYER);
     }
 
     @Override
@@ -41,15 +49,14 @@ public class WoodBoard extends GameObject {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.angle = angle;
+        bodyDef.type = BodyDef.BodyType.StaticBody;
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.filter.categoryBits = CONSTRUCTION_OBJECT_COLLISION_CATEGORY;
         fixtureDef.filter.maskBits = CONSTRUCTION_OBJECT_COLLISION_MASK;
 
-        fixtureDef.density = WOOD_BOARD_DENSITY;
-        fixtureDef.friction = WOOD_BOARD_FRICTION;
+        fixtureDef.density = SHAFT_WALL_DENSITY;
+        fixtureDef.friction = SHAFT_WALL_FRICTION;
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(dimension.x * .5f, dimension.y * .5f);
@@ -65,7 +72,9 @@ public class WoodBoard extends GameObject {
         addAttribute(MATERIAL_POS_KEY, position);
         addAttribute(MATERIAL_SPRITE_KEY, sprite);
         addAttribute(MATERIAL_SPRITE_ORIGIN_KEY, origin);
+
     }
+
 
     @Override
     protected void update() {
@@ -76,10 +85,10 @@ public class WoodBoard extends GameObject {
     @Override
     protected void render(SpriteBatch batch) {
         Vector2 tmp = toWindowCords(position.x, position.y);
-        sprite.setOrigin(dimension.x * .5f, dimension.y * .5f);
-        sprite.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
         sprite.setSize(dimension.x, dimension.y);
-        sprite.setPosition(tmp.x - dimension.x * .5f, tmp.y - dimension.y * .5f);
+        sprite.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
+        sprite.setOrigin(origin.x, origin.y);
+        sprite.setPosition(tmp.x - origin.x, tmp.y - origin.y);
         sprite.draw(batch);
         super.render(batch);
     }
@@ -93,6 +102,7 @@ public class WoodBoard extends GameObject {
         body = null;
         position = null;
         dimension = null;
+        origin = null;
 
         removeAttribute(MATERIAL_BODY_KEY);
         removeAttribute(MATERIAL_DIMENSION_KEY);
@@ -100,4 +110,5 @@ public class WoodBoard extends GameObject {
         removeAttribute(MATERIAL_SPRITE_KEY);
         removeAttribute(MATERIAL_SPRITE_ORIGIN_KEY);
     }
+
 }
